@@ -39,17 +39,7 @@ public class Nokia3310 {
             case 4 ->
                 callRegister();
             case 5 ->
-                displayMessage("Tones", """
-                        1 -> Ringing Tone
-                        2 -> Ringing Volume
-                        3 -> Incoming Call Alert
-                        4 -> Composer
-                        5 -> Message Alert Tone
-                        6 -> Keypad Tones
-                        7 -> Warning and Game Tone
-                        8 -> Vibrating Alert
-                        9 -> Screen Saver
-                        """);
+                tones();
             case 6 ->
                 settings();
             case 7 -> System.out.println("Call Divert");
@@ -62,6 +52,35 @@ public class Nokia3310 {
             case 13 -> System.out.println("SIM Services");
         }
         mainMenu();
+    }
+
+    private static void tones() {
+        displayMessage("Tones", """
+                1 -> Ringing Tone
+                2 -> Ringing Volume
+                3 -> Incoming Call Alert
+                4 -> Composer
+                5 -> Message Alert Tone
+                6 -> Keypad Tones
+                7 -> Warning and Game Tone
+                8 -> Vibrating Alert
+                9 -> Screen Saver
+                
+                0 -> Main Menu
+                """);
+        int tones = sc.nextInt();
+        switch (tones){
+            case 0 -> mainMenu();
+            case 1 -> System.out.println("Ringing Tone");
+            case 2 -> System.out.println("Ringing Volume");
+            case 3 -> System.out.println("Incoming Call Alert");
+            case 4 -> System.out.println("Composer");
+            case 5 -> System.out.println("Message Alert Tone");
+            case 6 -> System.out.println("Keypad Tones");
+            case 7 -> System.out.println("Warning and Game Tone");
+            case 8 -> System.out.println("Vibrating Alert");
+            case 9 -> System.out.println("Screen Saver");
+        }
     }
 
 
