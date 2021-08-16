@@ -31,17 +31,14 @@ public class Nokia3310 {
         int mainMenu = sc.nextInt();
 
         switch (mainMenu) {
-            case 1 -> {
+            case 1 ->
                 phoneBook();
-            }
-            case 2 -> {
+            case 2 ->
                 messages();
-            }
             case 3 -> System.out.println("Chat");
-            case 4 -> {
+            case 4 ->
                 callRegister();
-            }
-            case 5 -> {
+            case 5 ->
                 displayMessage("Tones", """
                         1 -> Ringing Tone
                         2 -> Ringing Volume
@@ -53,17 +50,14 @@ public class Nokia3310 {
                         8 -> Vibrating Alert
                         9 -> Screen Saver
                         """);
-            }
-            case 6 -> {
+            case 6 ->
                 settings();
-            }
             case 7 -> System.out.println("Call Divert");
             case 8 -> System.out.println("Games");
             case 9 -> System.out.println("Calculator");
             case 10 -> System.out.println("Reminder");
-            case 11 -> {
+            case 11 ->
                 clock();
-            }
             case 12 -> System.out.println("Profiles");
             case 13 -> System.out.println("SIM Services");
         }
@@ -111,15 +105,12 @@ public class Nokia3310 {
         int settings = sc.nextInt();
         switch (settings) {
             case 0 -> mainMenu();
-            case 1 -> {
+            case 1 ->
                 callSettings();
-            }
-            case 2 -> {
+            case 2 ->
                 phoneSettings();
-            }
-            case 3 -> {
+            case 3 ->
                 securitySettings();
-            }
             case 4 -> System.out.println("Restore Factory Settings");
         }
     }
@@ -141,26 +132,18 @@ public class Nokia3310 {
         switch (securitySettingsInput) {
             case 0 -> mainMenu();
             case 11 -> settings();
-            case 1 -> {
+            case 1 ->
                 System.out.println("Pin Code Request");
-            }
-            case 2 -> {
+            case 2 ->
                 System.out.println("Call Barring Service");
-            }
-            case 3 -> {
+            case 3 ->
                 System.out.println("Fixed Dialling");
-            }
-            case 4 -> {
+            case 4 ->
                 System.out.println("Closed User Group");
-
-            }
-            case 5 -> {
+            case 5 ->
                 System.out.println("Phone Security");
-
-            }
-            case 6 -> {
+            case 6 ->
                 System.out.println("Change Access Codes");
-            }
         }
     }
 
@@ -180,27 +163,20 @@ public class Nokia3310 {
 
         switch (phoneSettingsInput) {
             case 0 -> mainMenu();
-            case 11 -> settings();
-            case 1 -> {
+            case 11-> settings();
+            case 1 ->
                 System.out.println("Language");
-            }
-            case 2 -> {
+            case 2 ->
                 System.out.println("Cell Info Display");
-            }
-            case 3 -> {
+            case 3 ->
                 System.out.println("Welcome Note");
-            }
-            case 4 -> {
+            case 4 ->
                 System.out.println("Network Selection");
-
-            }
-            case 5 -> {
+            case 5 ->
                 System.out.println("Lights");
 
-            }
-            case 6 -> {
+            case 6 ->
                 System.out.println("Confirm SIM Service Options");
-            }
         }
     }
 
@@ -221,26 +197,18 @@ public class Nokia3310 {
         switch (callSettingsInput){
             case 0 -> mainMenu();
             case 11 -> settings();
-            case 1 -> {
+            case 1 ->
                 System.out.println("Automatic Redial");
-            }
-            case 2 -> {
+            case 2 ->
                 System.out.println("Speed Dialling");
-            }
-            case 3 -> {
+            case 3 ->
                 System.out.println("Call Waiting Options");
-            }
-            case 4 -> {
+            case 4 ->
                 System.out.println("Own Number Sending");
-
-            }
-            case 5 -> {
+            case 5 ->
                 System.out.println("Phone Line in Use");
-
-            }
-            case 6 -> {
+            case 6 ->
                 System.out.println("Automatic Answer");
-            }
         }
     }
 
@@ -264,63 +232,72 @@ public class Nokia3310 {
             case 2 -> System.out.println("Received Calls");
             case 3 -> System.out.println("Dialled Calls");
             case 4 -> System.out.println("Erase Recent Call Lists");
-            case 5 -> {
-                displayMessage("Show Call Duration", """
-                        1 -> Last Call Duration
-                        2 -> All Calls' Duration
-                        3 -> Received Calls' Duration
-                        4 -> Dialled Calls' Duration
-                        5 -> Clear Timers
-                        
-                        11-> Previous Menu
-                        0 -> Main Menu
-                        """);
-                int callDuration = sc.nextInt();
-                switch (callDuration) {
-                    case 0 -> mainMenu();
-                    case 11 -> callRegister();
-                    case 1 -> System.out.println("Last Call Duration");
-                    case 2 -> System.out.println("All Calls' Duration");
-                    case 3 -> System.out.println("Received Calls' Duration");
-                    case 4 -> System.out.println("Dialled Calls' Duration");
-                    case 5 -> System.out.println("Clear Timers");
-                }
-            }
-            case 6 -> {
-                displayMessage("Show Call Costs", """
-                        1 -> Last Call Cost
-                        2 -> All Calls' Cost
-                        3 -> Clear Counters
-                        
-                        11-> Previous Menu
-                        0 -> Main Menu
-                        """);
-                int callCost = sc.nextInt();
-                switch (callCost) {
-                    case 0 -> mainMenu();
-                    case 11 -> callRegister();
-                    case 1 -> System.out.println("Last Call Cost");
-                    case 2 -> System.out.println("All Calls Cost");
-                    case 3 -> System.out.println("Clear Counters");
-                }
-            }
-            case 7 -> {
-                displayMessage("Call Cost Settings", """
-                        1 -> Call Cost Limit
-                        2 -> Show Costs in
-                        
-                        11-> Previous Menu
-                        0 -> Main Menu
-                        """);
-                int callCostSettings = sc.nextInt();
-                switch (callCostSettings) {
-                    case 0 -> mainMenu();
-                    case 11 -> callRegister();
-                    case 1 -> System.out.println("Call Cost Limit");
-                    case 2 -> System.out.println("Show Costs in");
-                }
-            }
+            case 5 ->
+                callDuration();
+            case 6 ->
+                showCallCost();
+            case 7 ->
+                callCost();
             case 8 -> System.out.println("Prepaid Credit");
+        }
+    }
+
+    private static void callCost() {
+        displayMessage("Call Cost Settings", """
+                1 -> Call Cost Limit
+                2 -> Show Costs in
+                
+                11-> Previous Menu
+                0 -> Main Menu
+                """);
+        int callCostSettings = sc.nextInt();
+        switch (callCostSettings) {
+            case 0 -> mainMenu();
+            case 11 -> callRegister();
+            case 1 -> System.out.println("Call Cost Limit");
+            case 2 -> System.out.println("Show Costs in");
+        }
+    }
+
+    private static void showCallCost() {
+        displayMessage("Show Call Costs", """
+                1 -> Last Call Cost
+                2 -> All Calls' Cost
+                3 -> Clear Counters
+                
+                11-> Previous Menu
+                0 -> Main Menu
+                """);
+        int callCost = sc.nextInt();
+        switch (callCost) {
+            case 0 -> mainMenu();
+            case 11 -> callRegister();
+            case 1 -> System.out.println("Last Call Cost");
+            case 2 -> System.out.println("All Calls Cost");
+            case 3 -> System.out.println("Clear Counters");
+        }
+    }
+
+    private static void callDuration() {
+        displayMessage("Show Call Duration", """
+                1 -> Last Call Duration
+                2 -> All Calls' Duration
+                3 -> Received Calls' Duration
+                4 -> Dialled Calls' Duration
+                5 -> Clear Timers
+                
+                11-> Previous Menu
+                0 -> Main Menu
+                """);
+        int callDuration = sc.nextInt();
+        switch (callDuration) {
+            case 0 -> mainMenu();
+            case 11 -> callRegister();
+            case 1 -> System.out.println("Last Call Duration");
+            case 2 -> System.out.println("All Calls' Duration");
+            case 3 -> System.out.println("Received Calls' Duration");
+            case 4 -> System.out.println("Dialled Calls' Duration");
+            case 5 -> System.out.println("Clear Timers");
         }
     }
 
@@ -348,9 +325,8 @@ public class Nokia3310 {
             case 4 -> System.out.println("Picture Messages");
             case 5 -> System.out.println("Templates");
             case 6 -> System.out.println("Smileys");
-            case 7 -> {
+            case 7 ->
                 messageSettings();
-            }
             case 8 -> System.out.println("Info Service");
             case 9 -> System.out.println("Voice Mailbox Number");
             case 10 -> System.out.println("Service Command Editor");
@@ -369,12 +345,10 @@ public class Nokia3310 {
         switch (messageSettings) {
             case 0 -> mainMenu();
             case 11-> messages();
-            case 1 -> {
+            case 1 ->
                 setMessages();
-            }
-            case 2 -> {
+            case 2 ->
                 commonMessages();
-            }
         }
     }
 
@@ -442,24 +416,27 @@ public class Nokia3310 {
             case 5 -> System.out.println("Edit");
             case 6 -> System.out.println("Assign Tone");
             case 7 -> System.out.println("Send B'card");
-            case 8 -> {
-                displayMessage("Options", """
-                        1 -> Type of View
-                        2 -> Memory Status
-                        
-                        11-> Previous Menu
-                        0 -> Main Menu
-                        """);
-                int options = sc.nextInt();
-                switch (options) {
-                    case 0 -> mainMenu();
-                    case 11-> phoneBook();
-                    case 1 -> System.out.println("Type of View");
-                    case 2 -> System.out.println("Memory Status");
-                }
-            }
+            case 8 ->
+                phoneOptions();
             case 9 -> System.out.println("Speed Dials");
             case 10 -> System.out.println("Voice Tags");
+        }
+    }
+
+    private static void phoneOptions() {
+        displayMessage("Options", """
+                1 -> Type of View
+                2 -> Memory Status
+                
+                11-> Previous Menu
+                0 -> Main Menu
+                """);
+        int options = sc.nextInt();
+        switch (options) {
+            case 0 -> mainMenu();
+            case 11-> phoneBook();
+            case 1 -> System.out.println("Type of View");
+            case 2 -> System.out.println("Memory Status");
         }
     }
 }
