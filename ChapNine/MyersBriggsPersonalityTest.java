@@ -1,5 +1,6 @@
 package TryoutsAgain;
 
+
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
@@ -9,51 +10,69 @@ public class MyersBriggsPersonalityTest {
     private static int row = 20;
     private static int column = 2;
 
-    private static int[][] getArray (){
-//        String[] questionsArray = new String[row];
-        String[] questionsArray = {"a", "a", "b", "a", "b", "a", "b", "a", "a", "b", "a", "b", "b", "a", "b", "a", "a",
-                "b", "a", "a", "b", "a"};
-        int[][] answersArray = new int[row][column];
+    public static String[] throwQuestionsFrom() {
+        String[][] questionsArray= Questions.questionsArray();
+        String[] answersArray= new String[row];
 
-        for (row = 0; row < answersArray.length; row++) {
-//            System.out.println("Question " + (row + 1));
-//            questionsArray[row] = input();
-            for (column = 0; column < answersArray[row].length; column++) {
-                if (Objects.equals(questionsArray[row], "a")) {
-                    answersArray[row][0] = 1;
-                    answersArray[row][1] = 0;
-                } else if (Objects.equals(questionsArray[row], "b")){
-                    answersArray[row][0] = 0;
-                    answersArray[row][1] = 1;
+        for (int row = 0; row < questionsArray.length;row++) {
+            System.out.println("QUESTION " + (row + 1));
+            for (int column = 0; column < questionsArray[row].length; column++) {
+                if (column == 0) {
+                    System.out.print("A.\t");
+                } else {
+                    System.out.print("B.\t");
                 }
+                System.out.printf("%5s\n", questionsArray[row][column]);
             }
-//            System.out.println();
+            answersArray[row] = input().toLowerCase();
+            System.out.println();
+            clearScreen();
         }
         return answersArray;
     }
 
-    public static void displayArray(int[][] answersArray) {
-        for (row = 0; row < answersArray.length; row+= 4) {
-            for (column = row; column < row + 4; column++) {
-                System.out.printf("%5d", (column + 1));
-                System.out.print(Arrays.toString(answersArray[column]));
+    private static int[][] getArray (){
+//        String[] answersArray = throwQuestionsFrom();
+        String[] answersArray = new String[]{"a", "a", "b", "a", "b", "a", "b", "a", "a", "b", "a", "b", "b", "a", "b", "a", "a",
+                "b", "a", "a", "b", "a"};
+        int[][] recordsArray = new int[row][column];
+
+        for (row = 0; row < recordsArray.length; row++) {
+            for (column = 0; column < recordsArray[row].length; column++) {
+                if (Objects.equals(answersArray[row], "a")) {
+                    recordsArray[row][0] = 1;
+                    recordsArray[row][1] = 0;
+//                    ✔➖
+                } else if (Objects.equals(answersArray[row], "b")){
+                    recordsArray[row][0] = 0;
+                    recordsArray[row][1] = 1;
+                }
             }
-            System.out.println();
+        }
+        return recordsArray;
+    }
+
+    public static void displayArray() {
+        int[][] recordsArray = getArray();
+        for (int row = 0; row < recordsArray.length; row++) {
+            System.out.printf("%5d", row + 1);
+            for (int column = 0; column < recordsArray[row].length; column++) {
+                System.out.printf("%3s", recordsArray[row][column]);
+            }
+            if((row + 1) % 4 == 0) {
+                System.out.println();
+            }
         }
     }
 
-    public static int[][] findColumnSumOf(int[][] answersArray) {
-        int[][] totals = new int[5][column];
-        int sumOfA = 0, sumOfB = 0;
-        for (int row = 0; row < answersArray.length; row++) {
-            for (int column = 0; column < row; column++) {
-                sumOfA += answersArray[row][0];
-                sumOfB += answersArray[row][1];
-                totals[row][0] = sumOfA;
-                totals[row][1] = sumOfB;
+    public static int[] firstColumnOf(int[][] answersArray) {
+        int[] firstGroup = new int[5];
+        for (row = 0; row < answersArray.length; row+= 4) {
+            for (; row < row + 4; row++) {
+                firstGroup[row] = answersArray[row][row];
             }
         }
-        return totals;
+        return firstGroup;
     }
 
     public static String input() {
@@ -68,8 +87,10 @@ public class MyersBriggsPersonalityTest {
 
     public static void main(String[] args) {
 //        clearScreen();
-//        System.out.println(Arrays.deepToString(getArray()));
-        displayArray(getArray());
-        System.out.println(Arrays.deepToString(findColumnSumOf(getArray())));
+//        throwQuestionsFrom();
+        displayArray();
+//        System.out.println(Arrays.toString(firstColumnOf(getArray())));
+
+
     }
 }
