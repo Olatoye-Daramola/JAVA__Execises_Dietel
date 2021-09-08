@@ -52,13 +52,30 @@ public class MyersBriggsPersonalityTest {
     }
 
     public static void displayArray() {
-        demarcator("_");
+        for (int row = 0; row <= 3; row++) {
+            System.out.printf("%5s ", " ");
+            for (int column = 0; column < 2; column++) {
+                if (column == 0) {
+                    System.out.printf("%3s", "A");
+                } else {
+                    System.out.printf("%3s", "B");
+                }
+            }
+        }
+
+        System.out.println();
 
         int[][] recordsArray = getArray();
+        String[][] stringOfRecordsArray = new String[row][column];
         for (int row = 0; row < recordsArray.length; row++) {
             System.out.printf("%5d|", row + 1);
             for (int column = 0; column < recordsArray[row].length; column++) {
-                System.out.printf("%3s", recordsArray[row][column]);
+                if (recordsArray[row][column] == 1) {
+                    stringOfRecordsArray[row][column] = "✔";
+                } else {
+                    stringOfRecordsArray[row][column] = "";
+                }
+                System.out.printf("%3s", stringOfRecordsArray[row][column]);
             }
             if((row + 1) % 4 == 0) {
                 System.out.println();
