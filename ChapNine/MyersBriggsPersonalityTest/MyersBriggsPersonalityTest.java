@@ -1,7 +1,6 @@
 package TryoutsAgain;
 
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -53,14 +52,27 @@ public class MyersBriggsPersonalityTest {
     }
 
     public static void displayArray() {
+        demarcator("_");
+
         int[][] recordsArray = getArray();
         for (int row = 0; row < recordsArray.length; row++) {
-            System.out.printf("%5d", row + 1);
+            System.out.printf("%5d|", row + 1);
             for (int column = 0; column < recordsArray[row].length; column++) {
                 System.out.printf("%3s", recordsArray[row][column]);
             }
             if((row + 1) % 4 == 0) {
                 System.out.println();
+            }
+
+        }
+
+        demarcator("-");
+
+        int[][] sumsArray = getSumsOfColumnsOf();
+        for (int row = 0; row < sumsArray.length; row++) {
+            System.out.printf("%5s|", " ");
+            for (int column = 0; column < sumsArray[row].length; column++) {
+                System.out.printf("%3d", sumsArray[row][column]);
             }
         }
     }
@@ -72,21 +84,19 @@ public class MyersBriggsPersonalityTest {
         int sumOfA = 0, sumOfB = 0;
         int i = 0;
         for (int mainRow = 0; mainRow < 4; mainRow++) {
-
-            for (int row = 0; row < recordsArray.length; row += 4) {
+            for (int row = mainRow; row < recordsArray.length; row += 4) {
                 for (int column = 0; column < recordsArray[row].length; column++) {
                     firstGroup[i][column] = recordsArray[row][column];
                 }
-//                sumOfA += firstGroup[i][0];
-//                sumOfB += firstGroup[i][1];
-                columnSum[mainRow][0] += firstGroup[i][0];
-                columnSum[mainRow][1] += firstGroup[i][1];
-            }
-//            System.out.printf("%5d, %5d\n", sumOfA, sumOfB);
-//            columnSum[mainRow][0] += firstGroup[i][0];
-//            columnSum[mainRow][1] += firstGroup[i][1];
-//            System.out.println(Arrays.deepToString(columnSum));
+                sumOfA += firstGroup[i][0];
+                sumOfB += firstGroup[i][1];
 
+                columnSum[mainRow][0] = sumOfA;
+                columnSum[mainRow][1] = sumOfB;
+            }
+            i++;
+            sumOfA = 0;
+            sumOfB = 0;
         }
         return columnSum;
     }
@@ -94,6 +104,11 @@ public class MyersBriggsPersonalityTest {
     public static String input() {
         Scanner sc = new Scanner(System.in);
         return sc.next();
+    }
+
+    private static void demarcator(String sign) {
+        System.out.print(sign.repeat(50));
+        System.out.println();
     }
 
     public static void clearScreen() {
@@ -104,9 +119,7 @@ public class MyersBriggsPersonalityTest {
     public static void main(String[] args) {
 //        clearScreen();
 //        throwQuestionsFrom();
-//        displayArray();
-        System.out.println(Arrays.deepToString(getSumsOfColumnsOf()));
-
-
+        displayArray();
+//        System.out.println(Arrays.deepToString(getSumsOfColumnsOf()));
     }
 }
