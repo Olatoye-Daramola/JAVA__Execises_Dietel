@@ -1,17 +1,17 @@
 package TryoutsAgain;
 
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class MyersBriggsPersonalityTest {
 
-    private static int row = 20;
-    private static int column = 2;
+    private static final int ROW = 20;
+    private static final int COLUMN = 2;
+    private static String[] answersArray;
 
-    public static String[] throwQuestionsFrom() {
-        String[][] questionsArray= Questions.questionsArray();
-        String[] answersArray= new String[row];
+    public static void getUserResponse() {
+        String[][] questionsArray = Questions.questionsArray();
+        answersArray= new String[ROW];
 
         for (int row = 0; row < questionsArray.length;row++) {
             System.out.println("QUESTION " + (row + 1));
@@ -27,22 +27,18 @@ public class MyersBriggsPersonalityTest {
             System.out.println();
             clearScreen();
         }
-        return answersArray;
     }
 
-    private static int[][] getArray (){
-//        String[] answersArray = throwQuestionsFrom();
-        String[] answersArray = new String[]{"a", "a", "b", "a", "b", "a", "b", "a", "a", "b", "a", "b", "b", "a", "b", "a", "a",
-                "b", "a", "a", "b", "a"};
-        int[][] recordsArray = new int[row][column];
+    private static int[][] defineArray(){
+        int[][] recordsArray = new int[ROW][COLUMN];
 
-        for (row = 0; row < recordsArray.length; row++) {
-            for (column = 0; column < recordsArray[row].length; column++) {
-                if (Objects.equals(answersArray[row], "a")) {
+        for (int row = 0; row < recordsArray.length; row++) {
+            for (int column = 0; column < recordsArray[row].length; column++) {
+                if (answersArray[row].equals("a")) {
                     recordsArray[row][0] = 1;
                     recordsArray[row][1] = 0;
 //                    ✔➖
-                } else if (Objects.equals(answersArray[row], "b")){
+                } else if (answersArray[row].equals("b")){
                     recordsArray[row][0] = 0;
                     recordsArray[row][1] = 1;
                 }
@@ -65,8 +61,8 @@ public class MyersBriggsPersonalityTest {
 
         System.out.println();
 
-        int[][] recordsArray = getArray();
-        String[][] stringOfRecordsArray = new String[row][column];
+        int[][] recordsArray = defineArray();
+        String[][] stringOfRecordsArray = new String[ROW][COLUMN];
         for (int row = 0; row < recordsArray.length; row++) {
             System.out.printf("%5d|", row + 1);
             for (int column = 0; column < recordsArray[row].length; column++) {
@@ -83,28 +79,26 @@ public class MyersBriggsPersonalityTest {
 
         }
 
-        demarcator("-");
+        demarcator();
 
         int[][] sumsArray = getSumsOfColumnsOf();
-        for (int row = 0; row < sumsArray.length; row++) {
+        for (int[] row : sumsArray) {
             System.out.printf("%5s|", " ");
-            for (int column = 0; column < sumsArray[row].length; column++) {
-                System.out.printf("%3d", sumsArray[row][column]);
+            for (int column : row) {
+                System.out.printf("%3d", column);
             }
         }
     }
 
     public static int[][] getSumsOfColumnsOf() {
-        int[][] recordsArray = getArray();
+        int[][] recordsArray = defineArray();
         int[][] firstGroup = new int[5][2];
         int[][] columnSum = new int [4][2];
         int sumOfA = 0, sumOfB = 0;
         int i = 0;
         for (int mainRow = 0; mainRow < 4; mainRow++) {
             for (int row = mainRow; row < recordsArray.length; row += 4) {
-                for (int column = 0; column < recordsArray[row].length; column++) {
-                    firstGroup[i][column] = recordsArray[row][column];
-                }
+                System.arraycopy(recordsArray[row], 0, firstGroup[i], 0, recordsArray[row].length);
                 sumOfA += firstGroup[i][0];
                 sumOfB += firstGroup[i][1];
 
@@ -118,13 +112,17 @@ public class MyersBriggsPersonalityTest {
         return columnSum;
     }
 
+    private static void displayPersonalityResult() {
+        
+    }
+
     public static String input() {
         Scanner sc = new Scanner(System.in);
         return sc.next();
     }
 
-    private static void demarcator(String sign) {
-        System.out.print(sign.repeat(50));
+    private static void demarcator() {
+        System.out.print("=".repeat(50));
         System.out.println();
     }
 
@@ -134,9 +132,9 @@ public class MyersBriggsPersonalityTest {
     }
 
     public static void main(String[] args) {
-//        clearScreen();
-//        throwQuestionsFrom();
+        getUserResponse();
+        clearScreen();
         displayArray();
-//        System.out.println(Arrays.deepToString(getSumsOfColumnsOf()));
+        displayPersonalityResult();
     }
 }
