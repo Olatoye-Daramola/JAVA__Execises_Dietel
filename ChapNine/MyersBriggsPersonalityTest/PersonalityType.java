@@ -1,6 +1,7 @@
 package TryoutsAgain;
 
 public enum PersonalityType {
+	//	The following were gotten off https://www.16personalities.com/personality-types
     INTJ("Architect", "Imaginative and strategic thinkers, with a plan for everything."),
     INTP("Logician", "Innovative inventors with an unquenchable thirst for knowledge"),
     ENTJ("Commander", "Bold, imaginative and strong-willed leaders, always finding a way- or making one"),
