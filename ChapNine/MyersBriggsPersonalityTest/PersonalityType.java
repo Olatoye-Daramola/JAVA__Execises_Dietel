@@ -1,5 +1,6 @@
 package TryoutsAgain;
 
+
 public enum PersonalityType {
 	//	The following were gotten off https://www.16personalities.com/personality-types
     INTJ("Architect", "Imaginative and strategic thinkers, with a plan for everything."),
