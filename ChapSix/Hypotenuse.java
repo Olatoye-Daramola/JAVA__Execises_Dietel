@@ -4,6 +4,7 @@ public class Hypotenuse {
     }
 
     public static void main(String[] args) {
-        System.out.println(hypotenuseFinder(3.0, 4.0));
+//        System.out.println(hypotenuseFinder(3.0, 4.0));
+        System.out.println(hypotenuseFinder(8.0, 15.0));
     }
 }
