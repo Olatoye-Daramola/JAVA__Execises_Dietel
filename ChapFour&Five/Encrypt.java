@@ -6,7 +6,7 @@ public class Encrypt{
 		temp = Integer.parseInt(userMessage);
 		
 		fourthNumber = temp % 10;
-		fourthNumber [= (fourthNumber + 7) % 10;
+		fourthNumber = (fourthNumber + 7) % 10;
 		temp /= 10;
 		
 		thirdNumber = temp % 10;
@@ -20,7 +20,7 @@ public class Encrypt{
 		firstNumber = temp;
 		firstNumber = (firstNumber + 7) % 10;
 		
-		String concatMessage = (String) "" + thirdNumber + fourthNumber + firstNumber + secondNumber;
+		String concatMessage = "" + thirdNumber + fourthNumber + firstNumber + secondNumber;
 		System.out.println("\nmssg_ecrpt_this: " + concatMessage);
 	}
 }
