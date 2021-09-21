@@ -22,16 +22,12 @@ public class TwoPointOneSeven{
 		
 		System.out.printf("%nSum = %d%nAverage = %d%nProduct = %d%n", sum, average, product);
 		
-		if(numberOne > numberTwo && numberOne > numberThree){
-			System.out.printf("%d is the largest%n", numberOne);
-		}
-		
-		if(numberTwo > numberOne && numberTwo > numberThree){
-			System.out.printf("%d is the largest%n", numberTwo;
-		}
-		
-		if(numberThree > numberOne && numberThree > numberTwo){
-			System.out.printf("%d is the largest%n", numberThree);
+		if(numberTwo > numberOne && numberTwo > numberThree) {
+			System.out.printf("%d is the largest", numberTwo);
+		} else if(numberThree > numberOne && numberThree > numberTwo) {
+			System.out.printf("%d is the largest", numberThree);
+		} else {
+			System.out.printf("%d is the largest", numberOne);
 		}
 	}
 }
