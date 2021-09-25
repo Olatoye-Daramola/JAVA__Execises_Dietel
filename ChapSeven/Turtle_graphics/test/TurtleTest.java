@@ -1,12 +1,16 @@
-package TryoutsAgain;
+package Turtle_graphics.test;
 
+import Turtle_graphics.src.Pen;
+import Turtle_graphics.src.Position;
+import Turtle_graphics.src.Turtle;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-import static TryoutsAgain.Direction.*;
-import static TryoutsAgain.PenPosition.*;
+import static Turtle_graphics.src.Direction.*;
+import static Turtle_graphics.src.PenPosition.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -150,6 +154,6 @@ public class TurtleTest {
     @Test
     public void testThatTurtleCanMoveForwardWhileFacingEast() {
         //given
-        assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
+        Assertions.assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
     }
 }
