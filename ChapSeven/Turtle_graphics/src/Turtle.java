@@ -1,7 +1,7 @@
-package TryoutsAgain;
+package Turtle_graphics.src;
 
-import static TryoutsAgain.Direction.*;
-import static TryoutsAgain.PenPosition.*;
+import static Turtle_graphics.src.Direction.*;
+import static Turtle_graphics.src.PenPosition.*;
 
 
 public class Turtle {
