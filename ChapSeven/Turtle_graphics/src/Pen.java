@@ -1,6 +1,6 @@
-package TryoutsAgain;
+package Turtle_graphics.src;
 
-import static TryoutsAgain.PenPosition.UP;
+import static Turtle_graphics.src.PenPosition.UP;
 
 public class Pen {
     private PenPosition penPosition = UP;
