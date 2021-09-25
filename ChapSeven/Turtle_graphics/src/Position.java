@@ -1,23 +1,21 @@
-package TryoutsAgain;
+package Turtle_graphics.src;
 
 public class Position {
-    private int rowPosition;
-    private int columnPosition;
+    private final int ROW_POSITION;
+    private final int COLUMN_POSITION;
 
-    public Position(int rowPosition, int columnPosition) {
-        this.rowPosition = rowPosition;
-        this.columnPosition = columnPosition;
+    public Position(int ROW_POSITION, int COLUMN_POSITION) {
+        this.ROW_POSITION = ROW_POSITION;
+        this.COLUMN_POSITION = COLUMN_POSITION;
     }
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Position{");
-        sb.append("rowPosition=").append(rowPosition);
-        sb.append(", columnPosition=").append(columnPosition);
-        sb.append("}");
-        return sb.toString();
+        return "Position{" + "rowPosition=" + ROW_POSITION +
+                ", columnPosition=" + COLUMN_POSITION +
+                "}";
     }
 
-    @Override
+//    @Override
     
 }
