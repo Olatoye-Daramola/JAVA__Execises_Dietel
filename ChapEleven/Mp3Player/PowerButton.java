@@ -1,13 +1,15 @@
 package Mp3Player;
 
+import static Mp3Player.PowerButtonPosition.*;
+
 public class PowerButton {
-    private PowerButtonPosition buttonPosition = PowerButtonPosition.OFF;
+    private PowerButtonPosition buttonPosition = OFF;
 
     public PowerButtonPosition getPowerState() {
         return buttonPosition;
     }
 
-    public void setPowerSwitchState(PowerButtonPosition powerState) {
+    public void switchMp3PowerTo(PowerButtonPosition powerState) {
         buttonPosition = powerState;
     }
 }
