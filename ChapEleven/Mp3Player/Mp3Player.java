@@ -1,7 +1,6 @@
 package Mp3Player;
 
 import static Mp3Player.MusicState.*;
-import static Mp3Player.PowerButtonPosition.*;
 
 public class Mp3Player {
     private boolean isOn;
