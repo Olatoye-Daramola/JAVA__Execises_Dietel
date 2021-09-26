@@ -1,5 +1,5 @@
 package Mp3Player;
 
 public enum MusicState {
-    STOPPED, PLAYING
+    STOPPED, PAUSED, PLAYING
 }
