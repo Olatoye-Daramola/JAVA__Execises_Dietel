@@ -7,7 +7,21 @@ public class Volume {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void increaseVolume() {
+        boolean isLimit = volume < 100;
+        if (isLimit) {
+            volume += 5;
+        } else {
+            volume = 100;
+        }
+    }
+
+    public void decreaseVolume() {
+        boolean isLimit = volume > 0;
+        if (isLimit) {
+            volume -= 5;
+        } else {
+            volume = 0;
+        }
     }
 }
