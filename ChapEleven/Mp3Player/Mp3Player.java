@@ -4,20 +4,17 @@ import static Mp3Player.MusicState.*;
 import static Mp3Player.PowerButtonPosition.*;
 
 public class Mp3Player {
-    private PowerButton powerButton = new PowerButton();
+    private boolean isOn;
     private MusicState musicState = STOPPED;
     private Volume volume = new Volume();
 
-    public PowerButton switchButton() {
-        return powerButton;
+
+    public void isOn() {
+        isOn = !isOn;
     }
 
-    public void switchMp3PlayerOn() {
-        powerButton.switchMp3PowerTo(ON);
-    }
-
-    public void switchMp3PlayerOff() {
-        powerButton.switchMp3PowerTo(OFF);
+    public boolean getOn() {
+        return isOn;
     }
 
     public MusicState getMusicPlayingState() {
@@ -30,5 +27,17 @@ public class Mp3Player {
 
     public int getVolumeLevel() {
         return volume.getVolume();
+    }
+
+    public void increaseVolume() {
+        volume.increaseVolume();
+    }
+
+    public void decreaseVolume() {
+        volume.decreaseVolume();
+    }
+
+    public void pauseMusic() {
+        musicState = PAUSED;
     }
 }
