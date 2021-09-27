@@ -59,13 +59,27 @@ public class Turtle {
 
     public void moveForward(int numberOfSteps) {
         if (currentDirection == EAST) {
-            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps);
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps - 1);
         } else if (currentDirection == SOUTH) {
-            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps);
+            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps - 1);
         } else if (currentDirection == WEST) {
-            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps);
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps - 1);
         } else if (currentDirection == NORTH) {
-            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps);
+            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps - 1);
         }
+    }
+
+    public void writeOn(SketchPad sketchPad, int numberOfSteps) {
+        if (this.pen.getPosition() == DOWN) {
+            if (this.currentDirection == EAST) {
+                int[][] floor = sketchPad.getFloor();
+                int rowPosition = currentPosition.getRowPosition();
+                int columnPosition = currentPosition.getColumnPosition();
+                for (int i = 0; i < numberOfSteps; i++) {
+                    floor[rowPosition][columnPosition + i] = 1;
+                }
+            }
+        }
+        moveForward(numberOfSteps);
     }
 }
