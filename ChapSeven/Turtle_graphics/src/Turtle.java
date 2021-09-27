@@ -47,13 +47,21 @@ public class Turtle {
         return currentPosition;
     }
 
+//    public void moveForward(int numberOfSteps) {
+//        if (currentDirection == EAST) {
+//            increaseColumnPositionBy(numberOfSteps);
+//        }
+//    }
+//
+//    private void increaseColumnPositionBy(int numberOfSteps) {
+//        currentPosition.increaseColumnPositionBy(numberOfSteps);
+//    }
+
     public void moveForward(int numberOfSteps) {
         if (currentDirection == EAST) {
-            increaseColumnPositionBy(numberOfSteps);
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps );
+        } else if (currentDirection == SOUTH) {
+            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps);
         }
-    }
-
-    private void increaseColumnPositionBy(int numberOfSteps) {
-        currentPosition.increaseColumnPositionBy(numberOfSteps);
     }
 }
