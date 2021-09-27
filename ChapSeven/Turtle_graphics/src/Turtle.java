@@ -26,17 +26,17 @@ public class Turtle {
     }
 
     public void turnRight() {
-        if(currentDirection==NORTH) changeCurrentDirectionTo(EAST);
-        else if(currentDirection==WEST) changeCurrentDirectionTo(NORTH);
-        else if(currentDirection==SOUTH) changeCurrentDirectionTo(WEST);
-        else if(currentDirection==EAST) changeCurrentDirectionTo(SOUTH);
+        if (currentDirection == NORTH) changeCurrentDirectionTo(EAST);
+        else if (currentDirection == WEST) changeCurrentDirectionTo(NORTH);
+        else if (currentDirection == SOUTH) changeCurrentDirectionTo(WEST);
+        else if (currentDirection == EAST) changeCurrentDirectionTo(SOUTH);
     }
 
     public void turnLeft() {
-        if(currentDirection==NORTH) changeCurrentDirectionTo(WEST);
-        else if(currentDirection==WEST) changeCurrentDirectionTo(SOUTH);
-        else if(currentDirection==SOUTH) changeCurrentDirectionTo(EAST);
-        else if(currentDirection==EAST) changeCurrentDirectionTo(NORTH);
+        if (currentDirection == NORTH) changeCurrentDirectionTo(WEST);
+        else if (currentDirection == WEST) changeCurrentDirectionTo(SOUTH);
+        else if (currentDirection == SOUTH) changeCurrentDirectionTo(EAST);
+        else if (currentDirection == EAST) changeCurrentDirectionTo(NORTH);
     }
 
     private void changeCurrentDirectionTo(Direction newDirection) {
@@ -59,8 +59,12 @@ public class Turtle {
 
     public void moveForward(int numberOfSteps) {
         if (currentDirection == EAST) {
-            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps );
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps);
         } else if (currentDirection == SOUTH) {
+            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps);
+        } else if (currentDirection == WEST) {
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps);
+        } else if (currentDirection == NORTH) {
             currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps);
         }
     }
