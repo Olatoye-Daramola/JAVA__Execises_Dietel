@@ -1,14 +1,13 @@
 package Turtle_graphics.test;
 
-import Turtle_graphics.src.Pen;
-import Turtle_graphics.src.Position;
-import Turtle_graphics.src.Turtle;
-import org.junit.jupiter.api.Assertions;
+import Turtle_graphics.src.SketchPad;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
+import Turtle_graphics.src.Pen;
+import Turtle_graphics.src.Position;
+import Turtle_graphics.src.Turtle;
 import static Turtle_graphics.src.Direction.*;
 import static Turtle_graphics.src.PenPosition.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -199,5 +198,24 @@ public class TurtleTest {
         ijapa.moveForward(5);
         //assert
         assertEquals(new Position(5, 0), ijapa.getCurrentPosition());
+    }
+
+    @Test
+    public void testThatTurtleCanWriteOnSketchpadWhileFacingEast(){
+        //given
+        ijapa.penDown();
+        assertSame(EAST, ijapa.getCurrentDirection());
+        SketchPad sketchPad = new SketchPad(5, 5);
+        //when
+        ijapa.writeOn(sketchPad, 3);
+        //assert
+        int[][] floor = sketchPad.getFloor();
+        assertEquals(1, floor[0][0]);
+        assertEquals(1, floor[0][1]);
+        assertEquals(1, floor[0][2]);
+        assertEquals(0, floor[0][3]);
+        assertEquals(new Position(0,2), ijapa.getCurrentPosition());
+
+        sketchPad.displayFloor();
     }
 }
