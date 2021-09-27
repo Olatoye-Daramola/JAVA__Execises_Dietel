@@ -158,7 +158,7 @@ public class TurtleTest {
         //when
         ijapa.moveForward(5);
         //assert
-        assertEquals(new Position(0, 5), ijapa.getCurrentPosition());
+        assertEquals(new Position(0, 4), ijapa.getCurrentPosition());
     }
 
     @Test
@@ -170,7 +170,7 @@ public class TurtleTest {
         //when
         ijapa.moveForward(5);
         //assert
-        assertEquals(new Position(5, 0), ijapa.getCurrentPosition());
+        assertEquals(new Position(4, 0), ijapa.getCurrentPosition());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class TurtleTest {
         //when
         ijapa.moveForward(5);
         //assert
-        assertEquals(new Position(0, 5), ijapa.getCurrentPosition());
+        assertEquals(new Position(0, 4), ijapa.getCurrentPosition());
     }
 
     @Test
@@ -197,7 +197,7 @@ public class TurtleTest {
         //when
         ijapa.moveForward(5);
         //assert
-        assertEquals(new Position(5, 0), ijapa.getCurrentPosition());
+        assertEquals(new Position(4, 0), ijapa.getCurrentPosition());
     }
 
     @Test
