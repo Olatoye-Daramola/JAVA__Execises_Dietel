@@ -154,6 +154,11 @@ public class TurtleTest {
     @Test
     public void testThatTurtleCanMoveForwardWhileFacingEast() {
         //given
-        Assertions.assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
+        assertSame(EAST, ijapa.getCurrentDirection());
+        assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
+        //when
+        ijapa.moveForward(5);
+        //assert
+        assertEquals(new Position(0, 5), ijapa.getCurrentPosition());
     }
 }
