@@ -40,7 +40,7 @@ public class Turtle {
     }
 
     private void changeCurrentDirectionTo(Direction newDirection) {
-        this.currentDirection = newDirection;
+        currentDirection = newDirection;
     }
 
     public Position getCurrentPosition() {
@@ -63,23 +63,37 @@ public class Turtle {
         } else if (currentDirection == SOUTH) {
             currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps - 1);
         } else if (currentDirection == WEST) {
-            currentPosition.setColumnPosition(currentPosition.getColumnPosition() + numberOfSteps - 1);
+            currentPosition.setColumnPosition(currentPosition.getColumnPosition() - numberOfSteps + 1);
         } else if (currentDirection == NORTH) {
-            currentPosition.setRowPosition(currentPosition.getRowPosition() + numberOfSteps - 1);
+            currentPosition.setRowPosition(currentPosition.getRowPosition() - numberOfSteps + 1);
         }
     }
 
     public void writeOn(SketchPad sketchPad, int numberOfSteps) {
+        int[][] floor = sketchPad.getFloor();
+        int rowPosition = currentPosition.getRowPosition();
+        int columnPosition = currentPosition.getColumnPosition();
+
         if (this.pen.getPosition() == DOWN) {
             if (this.currentDirection == EAST) {
-                int[][] floor = sketchPad.getFloor();
-                int rowPosition = currentPosition.getRowPosition();
-                int columnPosition = currentPosition.getColumnPosition();
                 for (int i = 0; i < numberOfSteps; i++) {
                     floor[rowPosition][columnPosition + i] = 1;
                 }
+            } else if (this.currentDirection == SOUTH) {
+                for (int i = 0; i < numberOfSteps; i++) {
+                    floor[rowPosition + i][columnPosition] = 1;
+                }
+            } else if (this.currentDirection == WEST) {
+                for (int i = numberOfSteps - 1; i > 0; i--) {
+                    floor[rowPosition][columnPosition - i] = 1;
+                }
+            } else if (this.currentDirection == NORTH) {
+            for (int i = numberOfSteps - 1; i > 0; i--) {
+                floor[rowPosition - i][columnPosition] = 1;
             }
         }
-        moveForward(numberOfSteps);
+        }
+
+    moveForward(numberOfSteps);
     }
 }
