@@ -1,8 +1,8 @@
 package Turtle_graphics.src;
 
 public class Position {
-    private final int ROW_POSITION;
-    private final int COLUMN_POSITION;
+    private int ROW_POSITION;
+    private int COLUMN_POSITION;
 
     public Position(int ROW_POSITION, int COLUMN_POSITION) {
         this.ROW_POSITION = ROW_POSITION;
@@ -16,6 +16,20 @@ public class Position {
                 "}";
     }
 
-//    @Override
-    
+    public void increaseColumnPositionBy(int numberOfSteps) {
+        COLUMN_POSITION += numberOfSteps;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if ( this == o ) {
+            return true;
+        }
+        if ( !(o instanceof Position comparedPosition)) {
+            return false;
+        }
+        boolean rowsAreEqual = ROW_POSITION == comparedPosition.ROW_POSITION;
+        boolean columnsAreEqual = COLUMN_POSITION == comparedPosition.COLUMN_POSITION;
+        return rowsAreEqual && columnsAreEqual;
+    }
 }
