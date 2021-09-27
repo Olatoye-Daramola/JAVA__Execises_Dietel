@@ -21,16 +21,15 @@ public class Position {
 //    }
 
     @Override
-    public boolean equals(Object o) {
-        if ( this == o ) {
-            return true;
-        }
-        if ( !(o instanceof Position comparedPosition)) {
-            return false;
-        }
-        boolean rowsAreEqual = rowPosition == comparedPosition.rowPosition;
+    public boolean equals(Object otherPosition) {
+        if (otherPosition == null) return false;
+        if (!otherPosition.getClass().isInstance(this)) return false;
+
+        Position comparedPosition = (Position) otherPosition;
         boolean columnsAreEqual = columnPosition == comparedPosition.columnPosition;
-        return rowsAreEqual && columnsAreEqual;
+        boolean rowsAreEqual = rowPosition == comparedPosition.rowPosition;
+
+        return columnsAreEqual & rowsAreEqual;
     }
 
     public int getColumnPosition() {
