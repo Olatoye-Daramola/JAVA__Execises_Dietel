@@ -14,11 +14,12 @@ public class SketchPad {
         for (int[] row : floor) {
             for (int column : row) {
                 if (column == 1) {
-                    System.out.print("# ");
+                    System.out.print("#  ");
                 } else {
-                    System.out.print("  ");
+                    System.out.print("   ");
                 }
             }
+            System.out.println();
         }
     }
 }
