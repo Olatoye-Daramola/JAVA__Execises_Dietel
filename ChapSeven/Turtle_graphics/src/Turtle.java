@@ -6,7 +6,7 @@ import static Turtle_graphics.src.PenPosition.*;
 
 public class Turtle {
     private Pen pen = new Pen();
-    private Direction currentDirection = Direction.EAST;
+    private Direction currentDirection = EAST;
     private Position currentPosition = new Position(0, 0);
 
     public Pen getPen() {
@@ -45,5 +45,15 @@ public class Turtle {
 
     public Position getCurrentPosition() {
         return currentPosition;
+    }
+
+    public void moveForward(int numberOfSteps) {
+        if (currentDirection == EAST) {
+            increaseColumnPositionBy(numberOfSteps);
+        }
+    }
+
+    private void increaseColumnPositionBy(int numberOfSteps) {
+        currentPosition.increaseColumnPositionBy(numberOfSteps);
     }
 }
