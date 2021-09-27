@@ -173,4 +173,31 @@ public class TurtleTest {
         //assert
         assertEquals(new Position(5, 0), ijapa.getCurrentPosition());
     }
+
+    @Test
+    public void testThatTurtleCanMoveForwardWhileFacingWest() {
+        //given
+        ijapa.turnRight();
+        ijapa.turnRight();
+        assertSame(WEST, ijapa.getCurrentDirection());
+        assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
+        //when
+        ijapa.moveForward(5);
+        //assert
+        assertEquals(new Position(0, 5), ijapa.getCurrentPosition());
+    }
+
+    @Test
+    public void testThatTurtleCanMoveForwardWhileFacingNorth() {
+        //given
+        ijapa.turnRight();
+        ijapa.turnRight();
+        ijapa.turnRight();
+        assertSame(NORTH, ijapa.getCurrentDirection());
+        assertEquals(new Position(0, 0), ijapa.getCurrentPosition());
+        //when
+        ijapa.moveForward(5);
+        //assert
+        assertEquals(new Position(5, 0), ijapa.getCurrentPosition());
+    }
 }
