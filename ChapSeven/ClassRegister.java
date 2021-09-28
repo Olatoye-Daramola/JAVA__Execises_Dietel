@@ -1,5 +1,3 @@
-package TryoutsAgain;
-
 import java.util.Scanner;
 
 public class ClassRegister {
@@ -7,8 +5,6 @@ public class ClassRegister {
     private static int[] position;
 
     public static void main(String[] args) {
-
-
 
         int[][] studentDetails = getArrayOf();
 
@@ -55,7 +51,6 @@ public class ClassRegister {
             System.out.print(getTotalScorePerStudentOf(studentDetails)[row]);
             System.out.printf("\t\t%.2f", getAverageScorePerStudentOf(studentDetails)[row]);
             System.out.println("\t\t" + calculatePosition()[row]);
-
             System.out.println();
         }
 
@@ -106,6 +101,7 @@ public class ClassRegister {
        }
         return position;
     }
+
     public static double[] getAverageScorePerStudentOf(int[][] studentDetails) {
         double[] averageArray = new double[studentDetails.length];
         int[] total = getTotalScorePerStudentOf(studentDetails);
