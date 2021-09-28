@@ -1,5 +1,3 @@
-package TryoutsAgain;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ public class WeirdArray {
     }
 
     public static int[] getNumbers() {
-        return getNumbers();
+        return WeirdArrayRedone.getNumbersArray();
     }
 
     public static int calculateTotalOf(int... numbers) {
