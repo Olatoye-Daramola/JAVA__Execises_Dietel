@@ -1,5 +1,3 @@
-package TryoutsAgain;
-
 import java.util.Scanner;
 
 public class WeirdArrayRedone {
