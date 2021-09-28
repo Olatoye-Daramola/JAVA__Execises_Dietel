@@ -4,6 +4,11 @@ package TryoutsAgain;
 import java.util.Scanner;
 
 public class MyersBriggsPersonalityTest {
+    public static void main(String[] args) {
+        getUserResponse();
+        clearScreen();
+        displayAllDetails();
+    }
 
     private static final int ROW = 20;
     private static final int COLUMN = 2;
@@ -174,11 +179,5 @@ public class MyersBriggsPersonalityTest {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-    }
-
-    public static void main(String[] args) {
-        getUserResponse();
-        clearScreen();
-        displayAllDetails();
     }
 }
