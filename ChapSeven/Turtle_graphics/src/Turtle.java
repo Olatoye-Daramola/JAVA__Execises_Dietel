@@ -88,12 +88,12 @@ public class Turtle {
                     floor[rowPosition][columnPosition - i] = 1;
                 }
             } else if (this.currentDirection == NORTH) {
-            for (int i = numberOfSteps - 1; i > 0; i--) {
-                floor[rowPosition - i][columnPosition] = 1;
+                for (int i = numberOfSteps - 1; i > 0; i--) {
+                    floor[rowPosition - i][columnPosition] = 1;
+                }
             }
         }
-        }
 
-    moveForward(numberOfSteps);
+        moveForward(numberOfSteps);
     }
 }
