@@ -1,5 +1,3 @@
-package TryOuts;
-
 import java.util.Scanner;
 
 public class Nokia3310 {
