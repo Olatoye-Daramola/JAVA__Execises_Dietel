@@ -8,7 +8,7 @@ public class SevenSegmentDisplayDriver {
 //        String userInput = scanner.next();
         String userInput = "01101111";
 
-        SevenSegmentDisplay sevenSegmentDisplay = new SevenSegmentDisplay();
+//        SevenSegmentDisplay sevenSegmentDisplay = new SevenSegmentDisplay();
 
         SevenSegmentDisplay.setScreen(userInput);
         SevenSegmentDisplay.display();
