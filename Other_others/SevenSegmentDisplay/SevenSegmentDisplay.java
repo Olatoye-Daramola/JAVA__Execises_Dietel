@@ -4,66 +4,18 @@ import java.util.Arrays;
 
 public class SevenSegmentDisplay {
     private static final int[][] screen = new int[5][4];
-
+    private static final int NUMBER_OF_DIGITS_IN_USER_INPUT = 8;
+    private static final int[] arrayFromUserInput = new int[NUMBER_OF_DIGITS_IN_USER_INPUT];
 
     public static void setScreen(String userInput) {
-        final int NUMBER_OF_DIGITS_IN_USER_INPUT = 8;
-
-        char[] userNumberToArray = new char[NUMBER_OF_DIGITS_IN_USER_INPUT];
         for (int index = 0; index < NUMBER_OF_DIGITS_IN_USER_INPUT; index++) {
-            userNumberToArray[index] = userInput.charAt(index);
+            arrayFromUserInput[index] = Integer.parseInt(String.valueOf(userInput.charAt(index)));
         }
 
-        char a = userNumberToArray[0];
-        char b = userNumberToArray[1];
-        char c = userNumberToArray[2];
-        char d = userNumberToArray[3];
-        char e = userNumberToArray[4];
-        char f = userNumberToArray[5];
-        char g = userNumberToArray[6];
-        char h = userNumberToArray[7];
-
-        for (int row = 0; row < screen.length; row++) {
-            for (int column = 0; column < screen[row].length; column++) {
-                if (h == 1) {
-                    if (a == 1) {
-                        screen[0][0] = 1;
-                        screen[0][1] = 1;
-                        screen[0][2] = 1;
-                        screen[0][3] = 1;
-                    }
-                    if (b == 1) {
-                        screen[0][3] = 1;
-                        screen[1][3] = 1;
-                        screen[2][3] = 1;
-                    }
-                    if (c == 1) {
-                        screen[2][3] = 1;
-                        screen[3][3] = 1;
-                        screen[4][3] = 1;
-                    }
-                    if (d == 1) {
-                        screen[4][3] = 1;
-                        screen[4][2] = 1;
-                        screen[4][1] = 1;
-                        screen[4][0] = 1;
-                    }
-                    if (e == 1) {
-                        screen[4][0] = 1;
-                        screen[3][0] = 1;
-                        screen[2][0] = 1;
-                    }
-                    if (f == 1) {
-                        screen[2][0] = 1;
-                        screen[1][0] = 1;
-                        screen[0][0] = 1;
-                    }
-                    if (g == 1) {
-                        screen[2][0] = 1;
-                        screen[2][1] = 1;
-                        screen[2][2] = 1;
-                        screen[2][3] = 1;
-                    }
+        for (int[] row : screen) {
+            for (int column = 0; column < row.length; column++) {
+                if (arrayFromUserInput[7] == 1) {
+                    fillSegments();
                 } else {
                     clearScreen();
                 }
@@ -71,9 +23,78 @@ public class SevenSegmentDisplay {
         }
     }
 
+    private static void fillSegments() {
+        if (arrayFromUserInput[0] == 1) {
+            firstSegment();
+        }
+        if (arrayFromUserInput[1] == 1) {
+            secondSegment();
+        }
+        if (arrayFromUserInput[2] == 1) {
+            thirdSegment();
+        }
+        if (arrayFromUserInput[3] == 1) {
+            fourthSegment();
+        }
+        if (arrayFromUserInput[4] == 1) {
+            fifthSegment();
+        }
+        if (arrayFromUserInput[5] == 1) {
+            sixthSegment();
+        }
+        if (arrayFromUserInput[6] == 1) {
+            seventhSegment();
+        }
+    }
+
+    private static void firstSegment() {
+        screen[0][0] = 1;
+        screen[0][1] = 1;
+        screen[0][2] = 1;
+        screen[0][3] = 1;
+    }
+
+    private static void secondSegment() {
+        screen[0][3] = 1;
+        screen[1][3] = 1;
+        screen[2][3] = 1;
+    }
+
+    private static void thirdSegment() {
+        screen[2][3] = 1;
+        screen[3][3] = 1;
+        screen[4][3] = 1;
+    }
+
+    private static void fourthSegment() {
+        screen[4][3] = 1;
+        screen[4][2] = 1;
+        screen[4][1] = 1;
+        screen[4][0] = 1;
+    }
+
+    private static void fifthSegment() {
+        screen[4][0] = 1;
+        screen[3][0] = 1;
+        screen[2][0] = 1;
+    }
+
+    private static void sixthSegment() {
+        screen[2][0] = 1;
+        screen[1][0] = 1;
+        screen[0][0] = 1;
+    }
+
+    private static void seventhSegment() {
+        screen[2][0] = 1;
+        screen[2][1] = 1;
+        screen[2][2] = 1;
+        screen[2][3] = 1;
+    }
+
     private static void clearScreen() {
         for (int[] row : screen) {
-                Arrays.fill(row, 0);
+            Arrays.fill(row, 0);
         }
     }
 
@@ -89,23 +110,4 @@ public class SevenSegmentDisplay {
             System.out.println();
         }
     }
-
-    public static void main(String[] args) {
-        String userInput = "01101111";
-
-        SevenSegmentDisplay.setScreen(userInput);
-        SevenSegmentDisplay.display();
-
-    }
 }
-
-
-//    SevenSegmentDisplay.SevenSegmentDisplay();
-//    setScreen();
-//    display();  8 in 5by4 array
-//    clear();  clear console
-
-//    DriverClass();
-//    collect user input            parseToInteger
-//    display.userInput
-//    loop through numbers and try to display
