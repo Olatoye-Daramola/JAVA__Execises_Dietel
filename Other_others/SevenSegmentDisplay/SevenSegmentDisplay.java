@@ -1,17 +1,33 @@
 package SevenSegmentDisplay;
 
+import Turtle_graphics.src.Position;
+
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class SevenSegmentDisplay {
-    private static final int[][] SCREEN = new int[5][4];
+
+    public static final int[][] SCREEN = new int[5][4];
     private static final int NUMBER_OF_DIGITS_IN_USER_INPUT = 8;
     private static final int[] ARRAY_FROM_USER_INPUT = new int[NUMBER_OF_DIGITS_IN_USER_INPUT];
 
-    public static void setScreen(String userInput) {
-        for (int index = 0; index < NUMBER_OF_DIGITS_IN_USER_INPUT; index++) {
-            ARRAY_FROM_USER_INPUT[index] = Integer.parseInt(String.valueOf(userInput.charAt(index)));
+    public static void getUserInput(String userInput) {
+        if (userInput.length() <= 8) {
+            for (int index = 0; index < NUMBER_OF_DIGITS_IN_USER_INPUT; index++) {
+                if (Character.getNumericValue(userInput.charAt(index)) == 0 ||
+                        Character.getNumericValue(userInput.charAt(index)) == 1) {
+                    ARRAY_FROM_USER_INPUT[index] = Integer.parseInt(String.valueOf(userInput.charAt(index)));
+                } else {
+                    throw new InputMismatchException("Enter 0s and 1s only");
+                }
+            }
+        } else {
+            throw new ArrayIndexOutOfBoundsException("8-bit binary number only");
         }
+    }
 
+    public static void setScreen(String userInput) {
+        getUserInput(userInput);
         for (int[] row : SCREEN) {
             for (int column = 0; column < row.length; column++) {
                 if (ARRAY_FROM_USER_INPUT[7] == 1) {
@@ -111,3 +127,8 @@ public class SevenSegmentDisplay {
         }
     }
 }
+
+//Test that each segment prints
+//Test that input cannot be more than eight
+//Test that input is truly binary
+//Test that it can add leading zeros
