@@ -4,9 +4,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SevenSegmentDisplayDriver {
-    public static void main(String[] args) {
+    public static void main(String... args) {
         String userInput = getUserInput();
-        SevenSegmentDisplay.setScreen(userInput);
+
+        try {
+            SevenSegmentDisplay.setScreen(userInput);
+        }
+        catch (ArrayIndexOutOfBoundsException | InputMismatchException es) {
+            System.err.println(es.getMessage());
+            main();
+        }
+
         SevenSegmentDisplay.display();
     }
 
