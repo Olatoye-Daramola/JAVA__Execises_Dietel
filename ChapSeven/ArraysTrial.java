@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Arrays {
+public class ArraysTrial {
     public static void main(String[] args) {
         System.out.println("How many scores do you want to enter: ");
         Scanner input = new Scanner(System.in);
