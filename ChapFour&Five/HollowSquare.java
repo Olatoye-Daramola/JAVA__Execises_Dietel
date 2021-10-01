@@ -13,13 +13,13 @@ public class HollowSquare {
 			for(int j = 1; j <= userInput; j++) {
 				boolean bool = i != 1 && i != userInput && j != 1 && j != userInput;
 				if(bool) {
-					System.out.print("  ");
+					System.out.print("    ");
 				}
 				else {
-					System.out.print("* ");
+					System.out.print("*   ");
 				}
 			}
-			System.out.println(" ");
+			System.out.println("   ");
 		}
 	}
 }
