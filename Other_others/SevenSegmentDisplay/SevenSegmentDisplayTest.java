@@ -4,18 +4,23 @@ import Mp3Player.Mp3Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.InputMismatchException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SevenSegmentDisplayTest {
 
-//    @Test
-//    void testThatNumberOfBinaryDigitsCannotExceed8() {
-//        String userInput ="111111111";
-//        assertSame(arrayIndexOutOfBoundsException, SevenSegmentDisplay.getUserInput(userInput));
-//    }
+    @Test
+    void testThatNumberOfBinaryDigitsCannotExceed8() {
+        String userInput ="111111111";
+        assertThrows(ArrayIndexOutOfBoundsException.class, ()->SevenSegmentDisplay.getUserInput(userInput));
+    }
 
-//    @Test
-
+    @Test
+    void testThatNumberCanOnlyBe1And0() {
+        String userInput ="12111111";
+        assertThrows(InputMismatchException.class, ()->SevenSegmentDisplay.getUserInput(userInput));
+    }
 
     @Test
     void testThatFirstSegmentCanDisplay() {
@@ -82,9 +87,4 @@ class SevenSegmentDisplayTest {
         assertEquals(1, SevenSegmentDisplay.SCREEN[2][2]);
         assertEquals(1, SevenSegmentDisplay.SCREEN[2][3]);
     }
-
-//    @Test
-//    void testThatUserInputIsTrulyBinary() {
-//
-//    }
 }
