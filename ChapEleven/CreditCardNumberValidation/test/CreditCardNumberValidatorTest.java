@@ -28,4 +28,9 @@ class CreditCardNumberValidatorTest {
         assertTrue(CreditCardNumberValidator.isWithinValidRange(1234567891234L));
         assertTrue(CreditCardNumberValidator.isWithinValidRange(1234567891234567L));
     }
+
+    @Test
+    void testThatCreditCardIsAVisaCard() {
+        assertEquals(VISA, CreditCardNumberValidator.getCreditCardType();)
+    }
 }
