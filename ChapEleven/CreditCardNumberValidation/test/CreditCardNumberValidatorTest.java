@@ -51,4 +51,29 @@ class CreditCardNumberValidatorTest {
     void testThatCreditCardIsADiscoverCard() {
         assertEquals(DISCOVER_CARD, CreditCardNumberValidator.getCreditCardType(6011111111111L));
     }
+
+    @Test
+    void testThatCreditCardValidatorCanReturnCorrectSumOfNumbers() {
+        assertEquals(3, CreditCardNumberValidator.getDigit(6));
+    }
+
+    @Test
+    void testThatCreditCardValidatorCanReturnSumOfDoubleEvenPlace() {
+        assertEquals(29, CreditCardNumberValidator.sumOfDoubleEvenPlace(4388576018410707L));
+    }
+
+    @Test
+    void testThatCreditCardValidatorCanReturnSumOfOddPlace() {
+        assertEquals(41, CreditCardNumberValidator.sumOfOddPlace(4388576018410707L));
+    }
+
+    @Test
+    void testThatCreditCardValidatorCanCheckForNumberValidity() {
+        assertTrue(CreditCardNumberValidator.isValid(4388576018410707L));
+    }
+
+    @Test
+    void testThatCreditCardValidatorCanGetLengthOfNumber() {
+        assertSame(16, CreditCardNumberValidator.getSize(4388576018410707L));
+    }
 }
