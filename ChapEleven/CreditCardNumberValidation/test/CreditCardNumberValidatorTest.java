@@ -1,6 +1,9 @@
 package CreditCardNumberValidation.test;
 
 import CreditCardNumberValidation.src.CreditCardNumberValidator;
+import static CreditCardNumberValidation.src.CreditCardType.*;
+
+import CreditCardNumberValidation.src.CreditCardType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,13 +27,28 @@ class CreditCardNumberValidatorTest {
     }
 
     @Test
-    void testThatCreditCardNumberLengthOf13And16IsInValidRange() {
+    void testThatCreditCardNumberLengthOf13And16IsInValidRangeLimits() {
         assertTrue(CreditCardNumberValidator.isWithinValidRange(1234567891234L));
         assertTrue(CreditCardNumberValidator.isWithinValidRange(1234567891234567L));
     }
 
     @Test
     void testThatCreditCardIsAVisaCard() {
-        assertEquals(VISA, CreditCardNumberValidator.getCreditCardType();)
+        assertEquals(VISA_CARD, CreditCardNumberValidator.getCreditCardType(4011111111111L));
+    }
+
+    @Test
+    void testThatCreditCardIsAMasterCard() {
+        assertEquals(MASTER_CARD_CREDIT_CARD, CreditCardNumberValidator.getCreditCardType(5011111111111L));
+    }
+
+    @Test
+    void testThatCreditCardIsAnAmericanExpressCard() {
+        assertEquals(AMERICAN_EXPRESS_CARD, CreditCardNumberValidator.getCreditCardType(3711111111111L));
+    }
+
+    @Test
+    void testThatCreditCardIsADiscoverCard() {
+        assertEquals(DISCOVER_CARD, CreditCardNumberValidator.getCreditCardType(6011111111111L));
     }
 }
