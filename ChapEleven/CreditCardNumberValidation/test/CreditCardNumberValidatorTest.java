@@ -3,7 +3,6 @@ package CreditCardNumberValidation.test;
 import CreditCardNumberValidation.src.CreditCardNumberValidator;
 import static CreditCardNumberValidation.src.CreditCardType.*;
 
-import CreditCardNumberValidation.src.CreditCardType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
