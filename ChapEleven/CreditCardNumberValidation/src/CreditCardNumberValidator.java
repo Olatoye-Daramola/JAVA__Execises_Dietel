@@ -30,4 +30,49 @@ public class CreditCardNumberValidator {
         }
         return creditCardType;
     }
+
+    public static int getDigit(int number) {
+        int digit;
+        int multiplication = number * 2;
+        if (multiplication < 10) {
+            digit = multiplication;
+        } else {
+            String multiplicationToString = String.valueOf(multiplication);
+            digit = Character.getNumericValue(multiplicationToString.charAt(0)) +
+                    Character.getNumericValue(multiplicationToString.charAt(1));
+        }
+        return digit;
+    }
+
+    public static int sumOfDoubleEvenPlace(long number) {
+        int sum = 0;
+        String stringOfNumber = String.valueOf(number);
+        int lengthOfNumber = getSize(number);
+        for (int index = lengthOfNumber - 2; index >= 0; index -= 2) {
+            sum += getDigit(Character.getNumericValue(stringOfNumber.charAt(index)));
+        }
+        return sum;
+    }
+
+
+    public static int sumOfOddPlace(long number) {
+        int sum = 0;
+        String stringOfNumber = String.valueOf(number);
+        for (int index = stringOfNumber.length() - 1; index >= 0; index -= 2) {
+            sum += Character.getNumericValue(stringOfNumber.charAt(index));
+        }
+        return sum;
+    }
+
+    public static boolean isValid(long number) {
+        int sumOfDoubleEvenPlace = sumOfDoubleEvenPlace(number);
+        int sumOfOddPlace = sumOfOddPlace(number);
+        int sumOfBothPartitions = sumOfDoubleEvenPlace + sumOfOddPlace;
+        return sumOfBothPartitions % 10 == 0;
+    }
+
+
+    public static int getSize(long number) {
+        return String.valueOf(number).length();
+    }
 }
