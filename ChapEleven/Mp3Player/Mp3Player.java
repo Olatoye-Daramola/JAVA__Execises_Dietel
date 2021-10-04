@@ -6,7 +6,7 @@ public class Mp3Player {
     private boolean isOn;
     private MusicState musicState = STOPPED;
     private Volume volume = new Volume();
-
+    private DefaultPlaylist defaultPlaylist = new DefaultPlaylist();
 
     public void isOn() {
         isOn = !isOn;
@@ -38,5 +38,9 @@ public class Mp3Player {
 
     public void pauseMusic() {
         musicState = PAUSED;
+    }
+
+    public DefaultPlaylist getDefaultPlaylist() {
+        return defaultPlaylist;
     }
 }

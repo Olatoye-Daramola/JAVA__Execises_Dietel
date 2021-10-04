@@ -13,7 +13,6 @@ public class CreditCardNumberValidator {
     public static CreditCardType getCreditCardType(long cardNumber) {
         String cardNumberString = String.valueOf(cardNumber);
         String cardNumberPrefix = String.valueOf(cardNumberString.charAt(0));
-
         switch (cardNumberPrefix) {
             case "3":
                 if (String.valueOf(cardNumberString.charAt(1)).equals("7"))
@@ -47,13 +46,11 @@ public class CreditCardNumberValidator {
     public static int sumOfDoubleEvenPlace(long number) {
         int sum = 0;
         String stringOfNumber = String.valueOf(number);
-        int lengthOfNumber = getSize(number);
-        for (int index = lengthOfNumber - 2; index >= 0; index -= 2) {
+        for (int index = stringOfNumber.length() - 2; index >= 0; index -= 2) {
             sum += getDigit(Character.getNumericValue(stringOfNumber.charAt(index)));
         }
         return sum;
     }
-
 
     public static int sumOfOddPlace(long number) {
         int sum = 0;
@@ -65,12 +62,8 @@ public class CreditCardNumberValidator {
     }
 
     public static boolean isValid(long number) {
-        int sumOfDoubleEvenPlace = sumOfDoubleEvenPlace(number);
-        int sumOfOddPlace = sumOfOddPlace(number);
-        int sumOfBothPartitions = sumOfDoubleEvenPlace + sumOfOddPlace;
-        return sumOfBothPartitions % 10 == 0;
+        return (sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10 == 0;
     }
-
 
     public static int getSize(long number) {
         return String.valueOf(number).length();
