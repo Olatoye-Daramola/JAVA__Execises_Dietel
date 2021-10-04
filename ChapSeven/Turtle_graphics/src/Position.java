@@ -16,10 +16,6 @@ public class Position {
                 "}";
     }
 
-//    public void increaseColumnPositionBy(int numberOfSteps) {
-//        columnPosition += numberOfSteps;
-//    }
-
     @Override
     public boolean equals(Object otherPosition) {
         if (otherPosition == null) return false;
