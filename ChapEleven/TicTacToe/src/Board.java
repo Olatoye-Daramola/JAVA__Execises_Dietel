@@ -2,7 +2,6 @@ package TicTacToe.src;
 
 import java.util.Arrays;
 
-import static TicTacToe.src.Square.EMPTY;
 
 public class Board {
     static String[][] board = new String[3][3];
