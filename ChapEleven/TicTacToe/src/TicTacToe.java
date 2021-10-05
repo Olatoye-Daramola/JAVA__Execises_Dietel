@@ -1,5 +1,7 @@
 package TicTacToe.src;
 
+import static TicTacToe.src.Player.PLAYER_ONE;
+import static TicTacToe.src.Player.PLAYER_TWO;
 import static TicTacToe.src.Square.*;
 
 public class TicTacToe {
@@ -13,6 +15,14 @@ public class TicTacToe {
 
     public Square getSquareValue() {
         return square;
+    }
+    public Player getCurrentPlayer(Player player) {
+        if (player == PLAYER_ONE) {
+            player = PLAYER_TWO;
+        } else {
+            player = PLAYER_ONE;
+        }
+        return player;
     }
 
     public String[][] getPlayBoard() {
@@ -36,18 +46,21 @@ public class TicTacToe {
     public void squarePosition(int position, Square square) {
         for (int row = 0; row < playBoard.length; row++) {
             for (int column = 0; column < playBoard[row].length; column++) {
-//                if (playBoard[row][column] != String.valueOf(EMPTY)) {
                     setSquarePosition(position, square);
-//                } else {
-//                    throw new IllegalArgumentException("Cannot play in a filled position");
-//                }
             }
         }
     }
 
     public void playerMove(Player player, int position) {
-        if (player == Player.PLAYER_ONE) squarePosition(position, X);
-        else squarePosition(position, O);
+        if (position > 0 && position < 10) {
+            if (player == Player.PLAYER_ONE) squarePosition(position, X);
+            else squarePosition(position, O);
+        } else throw new IllegalArgumentException("Enter a position between 1 and 9");
+    }
+
+    public boolean canAdd(int row, int column) {
+        return playBoard[row][column] == String.valueOf(EMPTY);
+//        throw new IllegalArgumentException("Cannot play in a filled position");
     }
 
     public void displayBoard() {
