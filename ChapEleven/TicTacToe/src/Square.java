@@ -1,5 +1,5 @@
 package TicTacToe.src;
 
-public enum CellValue {
+public enum Square {
     EMPTY, X, O;
 }
