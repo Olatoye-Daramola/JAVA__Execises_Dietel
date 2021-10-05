@@ -1,46 +1,65 @@
 package TicTacToe.src;
 
-import java.util.Arrays;
-
-import static TicTacToe.src.CellValue.*;
-import static TicTacToe.src.Player.*;
+import static TicTacToe.src.Square.*;
 
 public class TicTacToe {
-    private Board board;
-    private CellValue cellValue = EMPTY;
-    private CellValuePosition position = new CellValuePosition(0, 0);
-
-    private Player player;
+    private Square square = EMPTY;
+    private Board board = new Board(square);
+    private String[][] playBoard = board.getBoard();
 
     public Board getBoard() {
         return board;
     }
 
-    public CellValue getCellValue() {
-        return cellValue;
+    public Square getSquareValue() {
+        return square;
     }
 
-    public void playerOneMove(int rowPosition, int columnPosition) {
-        position.setRowPosition(rowPosition);
-        position.setColumnPosition(columnPosition);
-        board.setBoard(String.valueOf(X), rowPosition, columnPosition);
+    public String[][] getPlayBoard() {
+        return playBoard;
     }
 
-    public void playerTwoMove(int rowPosition, int columnPosition) {
-            position.setRowPosition(rowPosition);
-            position.setColumnPosition(columnPosition);
-            board.setBoard(String.valueOf(X), rowPosition, columnPosition);
+    private void setSquarePosition(int position, Square square) {
+        switch (position) {
+            case 1 -> playBoard[0][0] = String.valueOf(square);
+            case 2 -> playBoard[0][1] = String.valueOf(square);
+            case 3 -> playBoard[0][2] = String.valueOf(square);
+            case 4 -> playBoard[1][0] = String.valueOf(square);
+            case 5 -> playBoard[1][1] = String.valueOf(square);
+            case 6 -> playBoard[1][2] = String.valueOf(square);
+            case 7 -> playBoard[2][0] = String.valueOf(square);
+            case 8 -> playBoard[2][1] = String.valueOf(square);
+            case 9 -> playBoard[2][2] = String.valueOf(square);
+        }
     }
-//
-//    public void playerMove(Player player, int rowPosition, int columnPosition) {
-//        if (player == PLAYER_ONE) {
-//            board.getBoard()[rowPosition][columnPosition] = String.valueOf(playerOneMove());
-//        } else {
-//            board.getBoard()[rowPosition][columnPosition] = String.valueOf(playerTwoMove());
-//        }
-//    }
 
-    public CellValuePosition getPosition() {
-        return position;
+    public void squarePosition(int position, Square square) {
+        for (int row = 0; row < playBoard.length; row++) {
+            for (int column = 0; column < playBoard[row].length; column++) {
+//                if (playBoard[row][column] != String.valueOf(EMPTY)) {
+                    setSquarePosition(position, square);
+//                } else {
+//                    throw new IllegalArgumentException("Cannot play in a filled position");
+//                }
+            }
+        }
+    }
+
+    public void playerMove(Player player, int position) {
+        if (player == Player.PLAYER_ONE) squarePosition(position, X);
+        else squarePosition(position, O);
+    }
+
+    public void displayBoard() {
+        for (String[] row : playBoard) {
+            System.out.print("| ");
+            for (String column : row) {
+                if (column == String.valueOf(EMPTY)) {
+                    System.out.print("_");
+                } else System.out.print(column);
+                System.out.print(" | ");
+            }
+            System.out.println();
+        }
     }
 }
