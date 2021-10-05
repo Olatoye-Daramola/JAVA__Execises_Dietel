@@ -1,10 +1,13 @@
 package TicTacToe.test;
 
-import static TicTacToe.src.CellValue.*;
+import static TicTacToe.src.Player.*;
+import static TicTacToe.src.Square.*;
 
 import TicTacToe.src.*;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.InputMismatchException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,12 +17,21 @@ class TicTacToeTest {
 
     @Test
     void testThatTicTacToeHasABoard() {
-        assertNull(ticTacToe.getBoard());
+        assertNull(board);
     }
 
     @Test
-    void testThatTicTacToeHasBoardElement() {
-        assertNotNull(ticTacToe.getCellValue());
+    void testThatTicTacToeHasBoardSquareElement() {
+        assertNotNull(ticTacToe.getSquareValue());
+    }
+
+    @Test
+    void testThatPlayBoardIsEmptyAfterInstantiation() {
+        for (String[] row : ticTacToe.getPlayBoard()) {
+            for (String column : row) {
+                assertEquals("EMPTY", column);
+            }
+        }
     }
 
     @Test
@@ -29,28 +41,30 @@ class TicTacToeTest {
 
     @Test
     void testThatPlayerOneCanPlay() {
-        ticTacToe.playerOneMove(2, 1);
-        assertEquals(X, ticTacToe.getCellValue());
-        assertEquals(new CellValuePosition(2, 1), ticTacToe.getPosition());
+        ticTacToe.playerMove(PLAYER_ONE, 2);
+        assertEquals("X", ticTacToe.getPlayBoard()[0][1]);
     }
 
-//    @Test
-//    void testThatPlayerTwoCanPlay() {
-//        ticTacToe.playerTwoMove();
-//        assertEquals(O, ticTacToe.getCellValue());
-//    }
+    @Test
+    void testThatPlayerTwoCanPlay() {
+        ticTacToe.playerMove(Player.PLAYER_TWO,9);
+        assertEquals("O", ticTacToe.getPlayBoard()[2][2]);
+    }
 
-//    @Test
-//    void testThatPlayingBoardIsEmpty() {
-//        for (String[] row : board.getBoard()) {
-//            for (String column : row) {
-//                assertEquals("EMPTY", column);
-//            }
-//        }
-//    }
+    @Test
+    void testThatOnePositionCannotTakeMoreThanOnePlay() {
+        ticTacToe.playerMove(PLAYER_ONE,1);
+        assertEquals("X", ticTacToe.getPlayBoard()[0][0]);
+//        ticTacToe.playerMove(PLAYER_ONE, 2);
+//        assertEquals("X", ticTacToe.getPlayBoard()[0][1]);
+//        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 1));
+    }
 
-//    @Test
-//    void testThatPlayingBoardIsEmpty() {
-//        assertNull(Arrays.deepToString(ticTacToe.getBoard()));
-//    }
+    @Test
+    void testThatTicTacToeGameCanBeWon() {
+        ticTacToe.playerMove(PLAYER_ONE, 1);
+        ticTacToe.playerMove(PLAYER_ONE, 5);
+        ticTacToe.playerMove(PLAYER_ONE, 9);
+        assertTrue(GameStatus.isWon(ticTacToe.getPlayBoard()));
+    }
 }
