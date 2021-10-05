@@ -1,21 +1,19 @@
 package TicTacToe.src;
 
-import static TicTacToe.src.CellValue.*;
-
 import java.util.Arrays;
 
-public class Board {
-    String[][] board;
+import static TicTacToe.src.Square.EMPTY;
 
-    public Board(int boardRow, int boardColumn) {
-        board = new String[boardRow][boardColumn];
+public class Board {
+    static String[][] board = new String[3][3];
+
+    public Board(Square square) {
+        for (String[] strings : board) {
+            Arrays.fill(strings, String.valueOf(square));
+        }
     }
 
     public String[][] getBoard() {
         return board;
-    }
-
-    public void setBoard(String valueOfPlayer, int row, int column) {
-        board[row][column] = valueOfPlayer;
     }
 }
