@@ -1,5 +1,7 @@
 package TicTacToe.src;
 
+import java.util.Arrays;
+
 import static TicTacToe.src.Player.PLAYER_ONE;
 import static TicTacToe.src.Player.PLAYER_TWO;
 import static TicTacToe.src.Square.*;
@@ -16,6 +18,7 @@ public class TicTacToe {
     public Square getSquareValue() {
         return square;
     }
+
     public Player getCurrentPlayer(Player player) {
         if (player == PLAYER_ONE) {
             player = PLAYER_TWO;
@@ -44,9 +47,9 @@ public class TicTacToe {
     }
 
     public void squarePosition(int position, Square square) {
-        for (int row = 0; row < playBoard.length; row++) {
-            for (int column = 0; column < playBoard[row].length; column++) {
-                    setSquarePosition(position, square);
+        for (String[] row : playBoard) {
+            for (int column = 0; column < row.length; column++) {
+                setSquarePosition(position, square);
             }
         }
     }
