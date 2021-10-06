@@ -1,6 +1,7 @@
 package TicTacToe.src;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import static TicTacToe.src.Player.PLAYER_ONE;
 import static TicTacToe.src.Player.PLAYER_TWO;
@@ -34,7 +35,11 @@ public class TicTacToe {
 
     private void setSquarePosition(int position, Square square) {
         switch (position) {
-            case 1 -> playBoard[0][0] = String.valueOf(square);
+            case 1 -> {
+                if (!canAdd(0, 0)) throw new IllegalArgumentException("Cannot play in a filled position");
+                else playBoard[0][0] = String.valueOf(square);
+                //                    playBoard[0][0] = String.valueOf(square);
+            }
             case 2 -> playBoard[0][1] = String.valueOf(square);
             case 3 -> playBoard[0][2] = String.valueOf(square);
             case 4 -> playBoard[1][0] = String.valueOf(square);
@@ -62,8 +67,7 @@ public class TicTacToe {
     }
 
     public boolean canAdd(int row, int column) {
-        return playBoard[row][column] == String.valueOf(EMPTY);
-//        throw new IllegalArgumentException("Cannot play in a filled position");
+        return Objects.equals(playBoard[row][column], EMPTY.toString());
     }
 
     public void displayBoard() {
