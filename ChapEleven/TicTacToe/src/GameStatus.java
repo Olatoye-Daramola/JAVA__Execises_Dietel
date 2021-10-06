@@ -3,6 +3,7 @@ package TicTacToe.src;
 import static TicTacToe.src.Square.EMPTY;
 
 public class GameStatus {
+    Player currentPlayer;
     Board board;
     String[][] playBoard = board.getBoard();
 
