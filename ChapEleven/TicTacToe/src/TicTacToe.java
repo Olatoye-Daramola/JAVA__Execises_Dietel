@@ -1,10 +1,8 @@
 package TicTacToe.src;
 
-import java.util.Arrays;
 import java.util.Objects;
 
-import static TicTacToe.src.Player.PLAYER_ONE;
-import static TicTacToe.src.Player.PLAYER_TWO;
+import static TicTacToe.src.Player.*;
 import static TicTacToe.src.Square.*;
 
 public class TicTacToe {
@@ -12,15 +10,11 @@ public class TicTacToe {
     private Board board = new Board(square);
     private String[][] playBoard = board.getBoard();
 
-    public Board getBoard() {
-        return board;
-    }
-
     public Square getSquareValue() {
         return square;
     }
 
-    public Player switchPlayer(Player player) {
+    public Player switchCurrentPlayer(Player player) {
         if (player == PLAYER_ONE) {
             player = PLAYER_TWO;
         } else {
@@ -33,41 +27,40 @@ public class TicTacToe {
         return playBoard;
     }
 
+    public boolean canAdd(int row, int column) {
+        return playBoard[row][column].equals(EMPTY.name());
+    }
+
+    private void validateInput(int row, int column, Square square) {
+        if (!canAdd(row, column)) throw new IllegalArgumentException("Cannot play in a filled position");
+        else playBoard[row][column] = String.valueOf(square);
+    }
+
     private void setSquarePosition(int position, Square square) {
         switch (position) {
-            case 1 -> { //                    playBoard[0][0] = String.valueOf(square);
-                if (!canAdd(0, 0)) throw new IllegalArgumentException("Cannot play in a filled position");
-                else playBoard[0][0] = String.valueOf(square);
-            }
-            case 2 -> playBoard[0][1] = String.valueOf(square);
-            case 3 -> playBoard[0][2] = String.valueOf(square);
-            case 4 -> playBoard[1][0] = String.valueOf(square);
-            case 5 -> playBoard[1][1] = String.valueOf(square);
-            case 6 -> playBoard[1][2] = String.valueOf(square);
-            case 7 -> playBoard[2][0] = String.valueOf(square);
-            case 8 -> playBoard[2][1] = String.valueOf(square);
-            case 9 -> playBoard[2][2] = String.valueOf(square);
+            case 1 -> validateInput(0, 0, square);
+            case 2 -> validateInput(0, 1, square);
+            case 3 -> validateInput(0, 2, square);
+            case 4 -> validateInput(1, 0, square);
+            case 5 -> validateInput(1, 1, square);
+            case 6 -> validateInput(1, 2, square);
+            case 7 -> validateInput(2, 0, square);
+            case 8 -> validateInput(2, 1, square);
+            case 9 -> validateInput(2, 2, square);
         }
     }
 
     public void squarePosition(int position, Square square) {
-        for (String[] row : playBoard) {
-            for (int column = 0; column < row.length; column++) {
-                setSquarePosition(position, square);
-            }
-        }
+        setSquarePosition(position, square);
     }
 
     public void playerMove(Player player, int position) {
         if (position > 0 && position < 10) {
             if (player == Player.PLAYER_ONE) squarePosition(position, X);
             else squarePosition(position, O);
-        } else throw new IllegalArgumentException("Enter a position between 1 and 9");
+        } else throw new IndexOutOfBoundsException("Enter a position between 1 and 9");
     }
 
-    public boolean canAdd(int row, int column) {
-        return Objects.equals(playBoard[row][column], EMPTY.toString());
-    }
 
     public void displayBoard() {
         for (String[] row : playBoard) {
