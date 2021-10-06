@@ -36,7 +36,7 @@ class TicTacToeTest {
 
     @Test
     void testThatGameCanSwitchCurrentPlayer() {
-        assertEquals(PLAYER_TWO, ticTacToe.getCurrentPlayer(PLAYER_ONE));
+        assertEquals(PLAYER_TWO, ticTacToe.switchCurrentPlayer(PLAYER_ONE));
     }
 
     @Test
@@ -47,7 +47,7 @@ class TicTacToeTest {
 
     @Test
     void testThatPlayerOneCannotPlayOutsideThePlayBoard() {
-        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_ONE, 10));
+        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerMove(PLAYER_ONE, 10));
     }
 
     @Test
@@ -58,17 +58,15 @@ class TicTacToeTest {
 
     @Test
     void testThatPlayerTwoCannotPlayOutsideThePlayBoard() {
-        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 10));
+        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 10));
     }
 
-//    @Test
-//    void testThatOnePositionCannotTakeMoreThanOnePlay() {
-//        ticTacToe.playerMove(PLAYER_ONE,1);
-//        assertEquals("X", ticTacToe.getPlayBoard()[0][0]);
-//        ticTacToe.playerMove(PLAYER_ONE, 2);
-//        assertEquals("X", ticTacToe.getPlayBoard()[0][1]);
-//        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 1));
-//    }
+    @Test
+    void testThatPlayerCannotPlayOnAFilledPosition() {
+        ticTacToe.playerMove(PLAYER_ONE,1);
+        assertEquals("X", ticTacToe.getPlayBoard()[0][0]);
+        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 1));
+    }
 
     @Test
     void testThatTicTacToeGameCanBeWonOneOnFirstRow() {
