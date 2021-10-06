@@ -29,8 +29,16 @@ public class TicTacToeDriver {
     }
 
     private static int input(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(prompt);
-        return scanner.nextInt();
+        int input = 0;
+//        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println(prompt);
+            input = scanner.nextInt();
+//        }
+//        catch (IllegalArgumentException illegalArgumentException) {
+//            System.out.println(illegalArgumentException.getMessage());
+//            input(prompt);
+//        }
+        return input;
     }
 }
