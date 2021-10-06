@@ -20,7 +20,7 @@ public class TicTacToe {
         return square;
     }
 
-    public Player getCurrentPlayer(Player player) {
+    public Player switchPlayer(Player player) {
         if (player == PLAYER_ONE) {
             player = PLAYER_TWO;
         } else {
@@ -35,10 +35,9 @@ public class TicTacToe {
 
     private void setSquarePosition(int position, Square square) {
         switch (position) {
-            case 1 -> {
+            case 1 -> { //                    playBoard[0][0] = String.valueOf(square);
                 if (!canAdd(0, 0)) throw new IllegalArgumentException("Cannot play in a filled position");
                 else playBoard[0][0] = String.valueOf(square);
-                //                    playBoard[0][0] = String.valueOf(square);
             }
             case 2 -> playBoard[0][1] = String.valueOf(square);
             case 3 -> playBoard[0][2] = String.valueOf(square);
