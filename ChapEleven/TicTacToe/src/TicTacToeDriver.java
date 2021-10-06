@@ -18,27 +18,27 @@ public class TicTacToeDriver {
 
         while (!stopGame) {
             player = ticTacToe.getCurrentPlayer(player);
-                if (player == PLAYER_ONE) currentPlayer = "Player 1";
-                else currentPlayer = "Player 2";
-
-                ticTacToe.playerMove(player, input(currentPlayer));
-                stopGame = GameStatus.isWon(playBoard);
-                ticTacToe.displayBoard();
+            if (player == PLAYER_ONE) currentPlayer = "Player 1";
+            else currentPlayer = "Player 2";
+            try {
+                playGame(currentPlayer);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+                playGame(currentPlayer);
+            }
         }
         System.out.println(currentPlayer + " WINS!");
     }
 
+    private static void playGame(String currentPlayer) {
+        ticTacToe.playerMove(player, input(currentPlayer));
+        stopGame = GameStatus.isWon(playBoard);
+        ticTacToe.displayBoard();
+    }
+
     private static int input(String prompt) {
-        int input = 0;
-//        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println(prompt);
-            input = scanner.nextInt();
-//        }
-//        catch (IllegalArgumentException illegalArgumentException) {
-//            System.out.println(illegalArgumentException.getMessage());
-//            input(prompt);
-//        }
-        return input;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        return scanner.nextInt();
     }
 }
