@@ -1,5 +1,6 @@
 package TicTacToe.src;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static TicTacToe.src.Square.*;
@@ -9,31 +10,34 @@ public class TicTacToeDriver {
     private static TicTacToe ticTacToe = new TicTacToe();
     private static Board board = new Board(EMPTY);
     private static String[][] playBoard = board.getBoard();
-    private static boolean stopGame = GameStatus.isWon(playBoard);
+    private static int movesCounter = 0;
+    private static boolean stopGame = GameStatus.isWon(playBoard) || GameStatus.isDraw(playBoard,  movesCounter);
     private static Player player = PLAYER_TWO;
+    private static String currentPlayer = "";
 
 
-    public static void main(String[] args) {
-        String currentPlayer = "";
+    public static void main(String... args) {
 
         while (!stopGame) {
-            player = ticTacToe.getCurrentPlayer(player);
+            player = ticTacToe.switchCurrentPlayer(player);
             if (player == PLAYER_ONE) currentPlayer = "Player 1";
             else currentPlayer = "Player 2";
-            try {
-                playGame(currentPlayer);
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
-                playGame(currentPlayer);
-            }
+            takeMoveFrom(player);
+            ++movesCounter;
+            stopGame = GameStatus.isWon(playBoard) || GameStatus.isDraw(playBoard, movesCounter);
+            ticTacToe.displayBoard();
         }
-        System.out.println(currentPlayer + " WINS!");
+        GameStatus.getMessage(playBoard, currentPlayer, movesCounter);
     }
 
-    private static void playGame(String currentPlayer) {
-        ticTacToe.playerMove(player, input(currentPlayer));
-        stopGame = GameStatus.isWon(playBoard);
-        ticTacToe.displayBoard();
+    private static void takeMoveFrom(Player player) {
+        try {
+            ticTacToe.playerMove(player, input(currentPlayer));
+        }
+        catch (IndexOutOfBoundsException | InputMismatchException | IllegalArgumentException es) {
+            System.err.println(es.getMessage());
+            takeMoveFrom(player);
+        }
     }
 
     private static int input(String prompt) {
