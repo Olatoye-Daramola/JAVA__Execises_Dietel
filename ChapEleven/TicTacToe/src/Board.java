@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 
 public class Board {
-    static String[][] board = new String[3][3];
+    static Square[][] arrayOfPlayBoard = new Square[3][3];
 
     public Board(Square square) {
-        for (String[] strings : board) {
-            Arrays.fill(strings, String.valueOf(square));
+        for (Square[] squares : arrayOfPlayBoard) {
+            Arrays.fill(squares, square);
         }
     }
 
-    public String[][] getBoard() {
-        return board;
+    public Square[][] getBoard() {
+        return arrayOfPlayBoard;
     }
 }
