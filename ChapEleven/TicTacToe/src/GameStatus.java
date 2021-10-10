@@ -3,9 +3,10 @@ package TicTacToe.src;
 import static TicTacToe.src.Square.EMPTY;
 
 public class GameStatus {
-    Player currentPlayer;
-    Board board;
-    Square[][] playBoard;
+    private Player currentPlayer;
+    private Board board;
+    private Square[][] playBoard;
+    private static String message = "";
 
     {
         assert false;
@@ -13,65 +14,68 @@ public class GameStatus {
     }
 
     public static boolean isWon(Square[][] playBoard) {
-        return firstRow(playBoard) ||
-               secondRow(playBoard) ||
-               thirdRow(playBoard) ||
+        return verifyWinnerOnTheFirstRow(playBoard) ||
+               verifyWinnerOnTheSecondRow(playBoard) ||
+               verifyWinnerOnTheThirdRow(playBoard) ||
 
-               firstColumn(playBoard) ||
-               secondColumn(playBoard) ||
-               thirdColumn(playBoard) ||
+               verifyWinnerOnTheFirstColumn(playBoard) ||
+               verifyWinnerOnTheSecondColumn(playBoard) ||
+               verifyWinnerOnTheThirdColumn(playBoard) ||
 
-               leftDiagonal(playBoard) ||
-               rightDiagonal(playBoard);
+               verifyWinnerOnTheLeftDiagonal(playBoard) ||
+               verifyWinnerOnTheRightDiagonal(playBoard);
     }
 
     public static boolean isDraw(Square[][] playBoard, int numberOfMoves) {
         return !isWon(playBoard) && numberOfMoves ==9;
     }
 
-    public static void getMessage(Square[][] playBoard, String currentPlayer, int numberOfMoves) {
-        if (!isDraw(playBoard, numberOfMoves)) System.out.println(currentPlayer + " WINS");
-        else if (!isWon(playBoard)) System.out.println("The game is a tie");
+    public static void setMessage(Square[][] playBoard, String currentPlayer, int numberOfMoves) {
+        if (!isDraw(playBoard, numberOfMoves)) message = currentPlayer + " WINS";
+        else if (!isWon(playBoard)) message = "The game is a tie";
+    }
+
+    public static String getMessage() {
+        return message;
     }
 
 
-
-    public static boolean firstRow(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheFirstRow(Square[][] playBoard) {
         return !playBoard[0][0].equals(EMPTY) &&
                 playBoard[0][0].equals(playBoard[0][1]) && playBoard[0][0].equals(playBoard[0][2]);
     }
 
-    public static boolean secondRow(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheSecondRow(Square[][] playBoard) {
         return !playBoard[1][0].equals(EMPTY) &&
                 playBoard[1][0].equals(playBoard[1][1]) && playBoard[1][0].equals(playBoard[1][2]);
     }
 
-    public static boolean thirdRow(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheThirdRow(Square[][] playBoard) {
         return !playBoard[2][0].equals(EMPTY) &&
                 playBoard[2][0].equals(playBoard[2][1]) && playBoard[2][0].equals(playBoard[2][2]);
     }
 
-    public static boolean firstColumn(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheFirstColumn(Square[][] playBoard) {
         return !playBoard[0][0].equals(EMPTY) &&
                 playBoard[0][0].equals(playBoard[1][0]) && playBoard[0][0].equals(playBoard[2][0]);
     }
 
-    public static boolean secondColumn(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheSecondColumn(Square[][] playBoard) {
         return !playBoard[0][1].equals(EMPTY) &&
                 playBoard[0][1].equals(playBoard[1][1]) && playBoard[0][1].equals(playBoard[2][1]);
     }
 
-    public static boolean thirdColumn(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheThirdColumn(Square[][] playBoard) {
         return !playBoard[0][2].equals(EMPTY) &&
                 playBoard[0][2].equals(playBoard[1][2]) && playBoard[0][2].equals(playBoard[2][2]);
     }
 
-    public static boolean leftDiagonal(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheLeftDiagonal(Square[][] playBoard) {
         return !playBoard[0][0].equals(EMPTY) &&
                 playBoard[0][0].equals(playBoard[1][1]) && playBoard[0][0].equals(playBoard[2][2]);
     }
 
-    public static boolean rightDiagonal(Square[][] playBoard) {
+    public static boolean verifyWinnerOnTheRightDiagonal(Square[][] playBoard) {
         return !playBoard[0][2].equals(EMPTY) &&
                 playBoard[0][2].equals(playBoard[1][1]) && playBoard[0][2].equals(playBoard[2][0]);
     }
