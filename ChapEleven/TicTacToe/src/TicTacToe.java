@@ -1,39 +1,41 @@
 package TicTacToe.src;
 
-import java.util.Objects;
-
 import static TicTacToe.src.Player.*;
 import static TicTacToe.src.Square.*;
 
 public class TicTacToe {
     private Square square = EMPTY;
     private Board board = new Board(square);
-    private String[][] playBoard = board.getBoard();
+    private Square[][] playBoard = board.getBoard();
+    private Player player = PLAYER_ONE;
+
+    public Square[][] getPlayBoard() {
+        return playBoard;
+    }
 
     public Square getSquareValue() {
         return square;
     }
 
-    public Player switchCurrentPlayer(Player player) {
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void changeCurrentPlayer() {
         if (player == PLAYER_ONE) {
             player = PLAYER_TWO;
         } else {
             player = PLAYER_ONE;
         }
-        return player;
-    }
-
-    public String[][] getPlayBoard() {
-        return playBoard;
     }
 
     public boolean canAdd(int row, int column) {
-        return playBoard[row][column].equals(EMPTY.name());
+        return playBoard[row][column].equals(EMPTY);
     }
 
-    private void validateInput(int row, int column, Square square) {
+    private void validateInput(int row, int column, Square square) throws IllegalArgumentException {
         if (!canAdd(row, column)) throw new IllegalArgumentException("Cannot play in a filled position");
-        else playBoard[row][column] = String.valueOf(square);
+        else playBoard[row][column] = square;
     }
 
     private void setSquarePosition(int position, Square square) {
@@ -54,24 +56,25 @@ public class TicTacToe {
         setSquarePosition(position, square);
     }
 
-    public void playerMove(Player player, int position) {
-        if (position > 0 && position < 10) {
+    public void playerPlay(Player player, int position) throws IndexOutOfBoundsException{
+        if (position >= 1 && position <= 9) {
             if (player == Player.PLAYER_ONE) squarePosition(position, X);
             else squarePosition(position, O);
-        } else throw new IndexOutOfBoundsException("Enter a position between 1 and 9");
+        } else throw new IndexOutOfBoundsException("Enter a position within the inclusive range of 1 and 9");
     }
 
-
-    public void displayBoard() {
-        for (String[] row : playBoard) {
-            System.out.print("| ");
-            for (String column : row) {
-                if (column == String.valueOf(EMPTY)) {
-                    System.out.print("_");
-                } else System.out.print(column);
-                System.out.print(" | ");
+    public StringBuilder displayBoard() {
+        StringBuilder displayBoard = new StringBuilder();
+        for (Square[] row : playBoard) {
+            displayBoard.append("| ");
+            for (Square column : row) {
+                if (column == EMPTY) {
+                    displayBoard.append("_");
+                } else displayBoard.append(column);
+                displayBoard.append(" | ");
             }
-            System.out.println();
+            displayBoard.append("\n");
         }
+        return displayBoard;
     }
 }
