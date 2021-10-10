@@ -9,30 +9,30 @@ import static TicTacToe.src.Player.*;
 public class TicTacToeDriver {
     private static TicTacToe ticTacToe = new TicTacToe();
     private static Board board = new Board(EMPTY);
-    private static String[][] playBoard = board.getBoard();
+    private static Square[][] playBoard = board.getBoard();
     private static int movesCounter = 0;
     private static boolean stopGame = GameStatus.isWon(playBoard) || GameStatus.isDraw(playBoard,  movesCounter);
-    private static Player player = PLAYER_TWO;
     private static String currentPlayer = "";
 
 
     public static void main(String... args) {
 
         while (!stopGame) {
-            player = ticTacToe.switchCurrentPlayer(player);
+            Player player = ticTacToe.getPlayer();
             if (player == PLAYER_ONE) currentPlayer = "Player 1";
             else currentPlayer = "Player 2";
             takeMoveFrom(player);
             ++movesCounter;
             stopGame = GameStatus.isWon(playBoard) || GameStatus.isDraw(playBoard, movesCounter);
-            ticTacToe.displayBoard();
+            System.out.println(ticTacToe.displayBoard());
+            ticTacToe.changeCurrentPlayer();
         }
         GameStatus.getMessage(playBoard, currentPlayer, movesCounter);
     }
 
     private static void takeMoveFrom(Player player) {
         try {
-            ticTacToe.playerMove(player, input(currentPlayer));
+            ticTacToe.playerPlay(player, input(currentPlayer));
         }
         catch (IndexOutOfBoundsException | InputMismatchException | IllegalArgumentException es) {
             System.err.println(es.getMessage());
