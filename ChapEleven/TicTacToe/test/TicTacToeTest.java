@@ -4,131 +4,144 @@ import static TicTacToe.src.Player.*;
 import TicTacToe.src.*;
 
 import org.junit.jupiter.api.Test;
+
+import static TicTacToe.src.Square.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicTacToeTest {
     TicTacToe ticTacToe = new TicTacToe();
-    Board board;
 
     @Test
-    void testThatTicTacToeHasABoard() {
-        assertNull(board);
+    void testThatTicTacToeHasAPlayBoard() {
+        assertNotNull(ticTacToe.getPlayBoard());
     }
 
     @Test
-    void testThatTicTacToeHasBoardSquareElement() {
+    void testThatTicTacToeHasBoardSquareValue() {
         assertNotNull(ticTacToe.getSquareValue());
     }
 
     @Test
-    void testThatPlayBoardIsEmptyAfterInstantiation() {
-        for (String[] row : ticTacToe.getPlayBoard()) {
-            for (String column : row) {
-                assertEquals("EMPTY", column);
+    void testThatPlayBoardIsEmptyByDefault() {
+        for (Square[] row : ticTacToe.getPlayBoard()) {
+            for (Square column : row) {
+                assertEquals(EMPTY, column);
             }
         }
     }
 
     @Test
     void testThatTicTaToeHasTwoPlayers() {
-        assertEquals(2, Player.values().length);
+        assertEquals(2, ticTacToe.getCurrentPlayer().values().length);
     }
 
     @Test
     void testThatGameCanSwitchCurrentPlayer() {
-        assertEquals(PLAYER_TWO, ticTacToe.switchCurrentPlayer(PLAYER_ONE));
+        Player player = PLAYER_ONE;
+        ticTacToe.changeCurrentPlayer();
+        assertEquals(PLAYER_TWO, ticTacToe.getCurrentPlayer());
     }
 
     @Test
-    void testThatPlayerOneCanPlay() {
-        ticTacToe.playerMove(PLAYER_ONE, 2);
-        assertEquals("X", ticTacToe.getPlayBoard()[0][1]);
+    void testThatPlayerOneCanMarkPlayBoard() {
+        ticTacToe.playerPlay(PLAYER_ONE, 2);
+        assertEquals(X, ticTacToe.getPlayBoard()[0][1]);
     }
 
     @Test
     void testThatPlayerOneCannotPlayOutsideThePlayBoard() {
-        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerMove(PLAYER_ONE, 10));
+        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerPlay(PLAYER_ONE, 10));
     }
 
     @Test
-    void testThatPlayerTwoCanPlay() {
-        ticTacToe.playerMove(Player.PLAYER_TWO,9);
-        assertEquals("O", ticTacToe.getPlayBoard()[2][2]);
+    void testThatPlayerTwoCanMarkPlayBoard() {
+        ticTacToe.playerPlay(Player.PLAYER_TWO,9);
+        assertEquals(O, ticTacToe.getPlayBoard()[2][2]);
     }
 
     @Test
     void testThatPlayerTwoCannotPlayOutsideThePlayBoard() {
-        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 10));
+        assertThrows(IndexOutOfBoundsException.class, ()-> ticTacToe.playerPlay(PLAYER_ONE, 10));
     }
 
     @Test
     void testThatPlayerCannotPlayOnAFilledPosition() {
-        ticTacToe.playerMove(PLAYER_ONE,1);
-        assertEquals("X", ticTacToe.getPlayBoard()[0][0]);
-        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerMove(PLAYER_TWO, 1));
+        ticTacToe.playerPlay(PLAYER_ONE,1);
+        assertEquals(X, ticTacToe.getPlayBoard()[0][0]);
+        assertThrows(IllegalArgumentException.class, ()-> ticTacToe.playerPlay(PLAYER_TWO, 1));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnFirstRow() {
-        ticTacToe.playerMove(PLAYER_ONE, 1);
-        ticTacToe.playerMove(PLAYER_ONE, 2);
-        ticTacToe.playerMove(PLAYER_ONE, 3);
-        assertTrue(GameStatus.firstRow(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnFirstRow() {
+        ticTacToe.playerPlay(PLAYER_ONE, 1);
+        ticTacToe.playerPlay(PLAYER_ONE, 2);
+        ticTacToe.playerPlay(PLAYER_ONE, 3);
+        assertTrue(GameStatus.verifyWinnerOnTheFirstRow(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnSecondRow() {
-        ticTacToe.playerMove(PLAYER_TWO, 4);
-        ticTacToe.playerMove(PLAYER_TWO, 5);
-        ticTacToe.playerMove(PLAYER_TWO, 6);
-        assertTrue(GameStatus.secondRow(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnSecondRow() {
+        ticTacToe.playerPlay(PLAYER_TWO, 4);
+        ticTacToe.playerPlay(PLAYER_TWO, 5);
+        ticTacToe.playerPlay(PLAYER_TWO, 6);
+        assertTrue(GameStatus.verifyWinnerOnTheSecondRow(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnThirdRow() {
-        ticTacToe.playerMove(PLAYER_ONE, 9);
-        ticTacToe.playerMove(PLAYER_ONE, 7);
-        ticTacToe.playerMove(PLAYER_ONE, 8);
-        assertTrue(GameStatus.thirdRow(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnThirdRow() {
+        ticTacToe.playerPlay(PLAYER_ONE, 9);
+        ticTacToe.playerPlay(PLAYER_ONE, 7);
+        ticTacToe.playerPlay(PLAYER_ONE, 8);
+        assertTrue(GameStatus.verifyWinnerOnTheThirdRow(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnFirstColumn() {
-        ticTacToe.playerMove(PLAYER_TWO, 1);
-        ticTacToe.playerMove(PLAYER_TWO, 4);
-        ticTacToe.playerMove(PLAYER_TWO, 7);
-        assertTrue(GameStatus.firstColumn(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnFirstColumn() {
+        ticTacToe.playerPlay(PLAYER_TWO, 1);
+        ticTacToe.playerPlay(PLAYER_TWO, 4);
+        ticTacToe.playerPlay(PLAYER_TWO, 7);
+        assertTrue(GameStatus.verifyWinnerOnTheFirstColumn(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnSecondColumn() {
-        ticTacToe.playerMove(PLAYER_ONE, 5);
-        ticTacToe.playerMove(PLAYER_ONE, 2);
-        ticTacToe.playerMove(PLAYER_ONE, 8);
-        assertTrue(GameStatus.secondColumn(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnSecondColumn() {
+        ticTacToe.playerPlay(PLAYER_ONE, 5);
+        ticTacToe.playerPlay(PLAYER_ONE, 2);
+        ticTacToe.playerPlay(PLAYER_ONE, 8);
+        assertTrue(GameStatus.verifyWinnerOnTheSecondColumn(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnThirdColumn() {
-        ticTacToe.playerMove(PLAYER_TWO, 6);
-        ticTacToe.playerMove(PLAYER_TWO, 9);
-        ticTacToe.playerMove(PLAYER_TWO, 3);
-        assertTrue(GameStatus.thirdColumn(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnThirdColumn() {
+        ticTacToe.playerPlay(PLAYER_TWO, 6);
+        ticTacToe.playerPlay(PLAYER_TWO, 9);
+        ticTacToe.playerPlay(PLAYER_TWO, 3);
+        assertTrue(GameStatus.verifyWinnerOnTheThirdColumn(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnLeftDiagonal() {
-        ticTacToe.playerMove(PLAYER_ONE, 1);
-        ticTacToe.playerMove(PLAYER_ONE, 5);
-        ticTacToe.playerMove(PLAYER_ONE, 9);
-        assertTrue(GameStatus.leftDiagonal(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnLeftDiagonal() {
+        ticTacToe.playerPlay(PLAYER_ONE, 1);
+        ticTacToe.playerPlay(PLAYER_ONE, 5);
+        ticTacToe.playerPlay(PLAYER_ONE, 9);
+        assertTrue(GameStatus.verifyWinnerOnTheLeftDiagonal(ticTacToe.getPlayBoard()));
     }
 
     @Test
-    void testThatTicTacToeGameCanBeWonOneOnRightDiagonal() {
-        ticTacToe.playerMove(PLAYER_TWO, 3);
-        ticTacToe.playerMove(PLAYER_TWO, 5);
-        ticTacToe.playerMove(PLAYER_TWO, 7);
-        assertTrue(GameStatus.rightDiagonal(ticTacToe.getPlayBoard()));
+    void testThatTicTacToeGameCanBeWonOnRightDiagonal() {
+        ticTacToe.playerPlay(PLAYER_TWO, 3);
+        ticTacToe.playerPlay(PLAYER_TWO, 5);
+        ticTacToe.playerPlay(PLAYER_TWO, 7);
+        assertTrue(GameStatus.verifyWinnerOnTheRightDiagonal(ticTacToe.getPlayBoard()));
     }
+
+//    @Test
+//    void testThatTicTacToeCanDisplayBoard() {
+//        StringBuilder prompt = new StringBuilder("""
+//                | _ | _ | _ |\s
+//                | _ | _ | _ |\s
+//                | _ | _ | _ |\s
+//                """);
+//        assertEquals(prompt, ticTacToe.displayBoard());
+//    }
 }
