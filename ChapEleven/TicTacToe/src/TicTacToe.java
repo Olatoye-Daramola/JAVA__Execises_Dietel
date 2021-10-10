@@ -4,10 +4,10 @@ import static TicTacToe.src.Player.*;
 import static TicTacToe.src.Square.*;
 
 public class TicTacToe {
-    private Square square = EMPTY;
-    private Board board = new Board(square);
+    private Square square;
+    private Board board = new Board();
     private Square[][] playBoard = board.getBoard();
-    private Player player = PLAYER_ONE;
+    private Player currentPlayer = PLAYER_ONE;
 
     public Square[][] getPlayBoard() {
         return playBoard;
@@ -17,16 +17,13 @@ public class TicTacToe {
         return square;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public void changeCurrentPlayer() {
-        if (player == PLAYER_ONE) {
-            player = PLAYER_TWO;
-        } else {
-            player = PLAYER_ONE;
-        }
+        if (currentPlayer == PLAYER_ONE) currentPlayer = PLAYER_TWO;
+        else currentPlayer = PLAYER_ONE;
     }
 
     public boolean canAdd(int row, int column) {
