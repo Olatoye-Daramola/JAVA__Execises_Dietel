@@ -13,7 +13,7 @@ public class GameStatus {
         playBoard = board.getBoard();
     }
 
-    public static boolean isWon(Square[][] playBoard) {
+    public static boolean hasWon(Square[][] playBoard) {
         return verifyWinnerOnTheFirstRow(playBoard) ||
                verifyWinnerOnTheSecondRow(playBoard) ||
                verifyWinnerOnTheThirdRow(playBoard) ||
@@ -27,12 +27,12 @@ public class GameStatus {
     }
 
     public static boolean isDraw(Square[][] playBoard, int numberOfMoves) {
-        return !isWon(playBoard) && numberOfMoves ==9;
+        return !hasWon(playBoard) && numberOfMoves ==9;
     }
 
     public static void setMessage(Square[][] playBoard, String currentPlayer, int numberOfMoves) {
         if (!isDraw(playBoard, numberOfMoves)) message = currentPlayer + " WINS";
-        else if (!isWon(playBoard)) message = "The game is a tie";
+        else if (!hasWon(playBoard)) message = "The game is a tie";
     }
 
     public static String getMessage() {
