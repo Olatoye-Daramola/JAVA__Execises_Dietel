@@ -12,7 +12,10 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public String createBank(String bankName) {
-        return String.format("%02d", ++lastBankIdCreated);
+        Bank bank = new Bank(String.format("%02d", ++lastBankIdCreated));
+        bank.setName(bankName);
+        Bank savedBank = bankRepository.save(bank);
+        return savedBank.getId();
     }
 
     @Override
