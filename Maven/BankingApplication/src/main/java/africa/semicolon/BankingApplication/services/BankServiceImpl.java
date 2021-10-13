@@ -4,6 +4,7 @@ import africa.semicolon.BankingApplication.data.models.Account;
 import africa.semicolon.BankingApplication.data.models.Bank;
 import africa.semicolon.BankingApplication.data.repositories.BankRepository;
 import africa.semicolon.BankingApplication.data.repositories.BankRepositoryImpl;
+import africa.semicolon.BankingApplication.dtos.requests.CreateAccountRequest;
 
 import java.util.List;
 
@@ -32,10 +33,12 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public String createAccount(String bankId, String firstName, String lastName) {
+    public String createAccount(CreateAccountRequest createAccountRequest) {
+        String bankId = createAccountRequest.getBankId();
         String accountNumber = generateSuffixFor(bankId);
         Account account = new Account();
         account.setNumber(bankId + accountNumber);
+        account.setType(createAccountRequest.getAccountType());
         Bank bank = bankRepository.findBankById(bankId);
         bank.getAccounts().add(account);
         bankRepository.save(bank);
