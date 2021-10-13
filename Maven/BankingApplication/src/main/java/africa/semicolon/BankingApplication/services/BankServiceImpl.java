@@ -8,14 +8,20 @@ import java.util.List;
 
 public class BankServiceImpl implements BankService {
     private BankRepository bankRepository = new BankRepositoryImpl();
-    private static int lastBankIdCreated = 0;
+//    private static int lastBankIdCreated = 0;
 
     @Override
     public String createBank(String bankName) {
-        Bank bank = new Bank(String.format("%02d", ++lastBankIdCreated));
+        String bankId = generateBankId();
+        Bank bank = new Bank(bankId);
         bank.setName(bankName);
         Bank savedBank = bankRepository.save(bank);
         return savedBank.getId();
+    }
+
+    private String generateBankId() {
+        int lastBankIdCreated = findAllBanks().size();
+        return String.format("%02d", ++lastBankIdCreated);
     }
 
     @Override
