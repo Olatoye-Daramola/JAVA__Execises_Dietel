@@ -1,6 +1,5 @@
 package africa.semicolon.BankingApplication.data.repositories;
 
-import africa.semicolon.BankingApplication.data.models.Account;
 import africa.semicolon.BankingApplication.data.models.Bank;
 
 import java.util.ArrayList;
@@ -12,6 +11,10 @@ public class BankRepositoryImpl implements BankRepository {
 
     @Override
     public Bank save(Bank bank) {
+        Bank foundBank = findBankById(bank.getId());
+        if (foundBank != null) {
+            delete(foundBank);
+        }
         banks.add(bank);
         return findBankById(bank.getId());
     }
