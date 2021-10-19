@@ -25,7 +25,7 @@ public class RecursiveBinarySearch {
     }
 
     public static void main(String[] args) {
-        int[] list = new int[]{1, 2, 3, 4, 5, 6};
-        System.out.println(binarySearch(list, 0));
+        int[] list = new int[]{1, 2, 3, 4, 5, 6, 7};
+        System.out.println(binarySearch(list, 7));
     }
 }
