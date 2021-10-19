@@ -2,7 +2,7 @@ package Algorithms.Search;
 
 public class RecursiveBinarySearch {
 
-    public static boolean binarySearch(int[] list, int target) {
+    public static boolean isInList(int[] list, int target) {
         if (list.length == 0) return false;
         else {
             int midPoint = list.length / 2;
@@ -10,7 +10,7 @@ public class RecursiveBinarySearch {
             else {
                 int[] new_list = new int[midPoint];
                 createNewListBasedOnPositionOfTargetInList(list, target, midPoint, new_list);
-                return binarySearch(new_list, target);
+                return isInList(new_list, target);
             }
         }
     }
@@ -38,6 +38,6 @@ public class RecursiveBinarySearch {
 
     public static void main(String[] args) {
         int[] list = new int[]{1, 2, 3, 4, 5, 6, 7};
-        System.out.println(binarySearch(list, 7));
+        System.out.println(isInList(list, 7));
     }
 }
