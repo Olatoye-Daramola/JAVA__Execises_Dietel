@@ -8,7 +8,7 @@ public class CodeWar {
         int[] array2 = {4};
         int[] array3 = new int[2];
         for(int i = 0; i < array1.length; i++) {
-            for(int j = 0; j < array1.length; j++) {
+            for(int j = i + 1; j < array1.length; j++) {
                 if (array1[i] + array1[j] == array2[0]) {
                     array3[0] = j;
                     array3[1] = i;
