@@ -1,5 +1,7 @@
 package TicTacToe.src;
 
+import java.util.ArrayList;
+
 import static TicTacToe.src.Player.*;
 import static TicTacToe.src.Square.*;
 
