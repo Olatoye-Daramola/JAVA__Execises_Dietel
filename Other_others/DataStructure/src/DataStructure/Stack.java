@@ -2,10 +2,14 @@ package DataStructure.src.DataStructure;
 
 public class Stack {
     private int numberOfElements;
-    private int element;
+    private int[] elements;
+
+    public Stack(int capacity) {
+        elements = new int[capacity];
+    }
 
     public void push(int element) {
-        this.element = element;
+        elements[numberOfElements] = element;
         numberOfElements++;
     }
     public int size() {
@@ -22,7 +26,7 @@ public class Stack {
     }
 
     public int peek() {
-        return element;
+        return elements[numberOfElements - 1];
     }
 
     public static class UnderFlowException extends RuntimeException {
