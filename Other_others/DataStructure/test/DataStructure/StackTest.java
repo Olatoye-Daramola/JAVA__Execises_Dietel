@@ -55,7 +55,7 @@ class StackTest {
     }
 
     @Test
-    void addXYZ_PopZY_XshouldBeAtPeek() {
+    void addXYZ_PopZY_XShouldBeAtPeek() {
         stack.push(4);
         stack.push(6);
         stack.push(8);
@@ -66,7 +66,7 @@ class StackTest {
     }
 
     @Test
-    void addXYZABC_StackTHrowsOverFlowTest() {
+    void addXYZABC_StackThrowsOverFlowTest() {
         stack.push(4);
         stack.push(6);
         stack.push(8);
@@ -76,7 +76,7 @@ class StackTest {
     }
 
     @Test
-    void peekEmptyStaackThrowUnderFlowTest() {
+    void peekEmptyStackThrowUnderFlowTest() {
         assertThrows(Stack.UnderFlowException.class, ()->stack.peek());
     }
 }
