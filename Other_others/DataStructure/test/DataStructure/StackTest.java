@@ -64,4 +64,19 @@ class StackTest {
         assertEquals(1, stack.size());
         assertEquals(4, stack.peek());
     }
+
+    @Test
+    void addXYZABC_StackTHrowsOverFlowTest() {
+        stack.push(4);
+        stack.push(6);
+        stack.push(8);
+        stack.push(10);
+        stack.push(12);
+        assertThrows(Stack.OverFlowException.class, ()->stack.push(14));
+    }
+
+    @Test
+    void peekEmptyStaackThrowUnderFlowTest() {
+        assertThrows(Stack.UnderFlowException.class, ()->stack.peek());
+    }
 }
