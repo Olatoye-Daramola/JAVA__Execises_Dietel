@@ -1,7 +1,6 @@
 package TicTacToe.src;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 import static TicTacToe.src.Player.*;
 
@@ -15,17 +14,22 @@ public class TicTacToeDriver {
 
     public static void main(String... args) {
 
-        while (!stopGame) {
-            Player player = ticTacToe.getCurrentPlayer();
-            if (player == PLAYER_ONE) currentPlayer = "Player 1";
-            else currentPlayer = "Player 2";
-            takeMoveFrom(player);
-            ++movesCounter;
-            stopGame = GameStatus.hasWon(playBoard) || GameStatus.isDraw(playBoard, movesCounter);
-            System.out.println(ticTacToe.displayBoard());
-            ticTacToe.changeCurrentPlayer();
-        }
-        announceGameOutcome();
+//        while (!stopGame) {
+//            Player player = ticTacToe.getCurrentPlayer();
+//            if (player == PLAYER_ONE) currentPlayer = "Player 1";
+//            else currentPlayer = "Player 2";
+//            takeMoveFrom(player);
+//            ++movesCounter;
+//            stopGame = GameStatus.hasWon(playBoard) || GameStatus.isDraw(playBoard, movesCounter);
+//            System.out.println(ticTacToe.displayBoard());
+//            ticTacToe.changeCurrentPlayer();
+//        }
+//        announceGameOutcome();
+        String[] array = {"abc", "2", "10", "0"};
+        List<String> list = Arrays.asList(array);
+        Collections.sort(list);
+        System.out.println(Arrays.toString(array));
+
     }
 
     private static void takeMoveFrom(Player player) {
