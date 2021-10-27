@@ -10,7 +10,7 @@ class StackTest {
     private Stack stack;
     @BeforeEach
     public void startEachWithThis() {
-        stack = new Stack();
+        stack = new Stack(5);
     }
 
     @Test
@@ -52,5 +52,16 @@ class StackTest {
         stack.push(6);
         stack.push(8);
         assertEquals(9, stack.peek());
+    }
+
+    @Test
+    void addXYZ_PopZY_XshouldBeAtPeek() {
+        stack.push(4);
+        stack.push(6);
+        stack.push(8);
+        stack.pop();
+        stack.pop();
+        assertEquals(1, stack.size());
+        assertEquals(4, stack.peek());
     }
 }
