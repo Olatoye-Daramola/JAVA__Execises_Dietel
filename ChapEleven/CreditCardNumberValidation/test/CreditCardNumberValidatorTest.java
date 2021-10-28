@@ -1,10 +1,9 @@
 package CreditCardNumberValidation.test;
 
 import CreditCardNumberValidation.src.CreditCardNumberValidator;
-import static CreditCardNumberValidation.src.CreditCardType.*;
-
 import org.junit.jupiter.api.Test;
 
+import static CreditCardNumberValidation.src.CreditCardType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreditCardNumberValidatorTest {
