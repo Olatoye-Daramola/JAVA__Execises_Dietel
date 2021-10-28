@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Time;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import static Mp3Player.MusicState.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class Mp3PlayerTest {
