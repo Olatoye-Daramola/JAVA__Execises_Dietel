@@ -1,10 +1,12 @@
 package TicTacToe.test;
 
-import static TicTacToe.src.Player.*;
-import TicTacToe.src.*;
-
+import TicTacToe.src.GameStatus;
+import TicTacToe.src.Player;
+import TicTacToe.src.Square;
+import TicTacToe.src.TicTacToe;
 import org.junit.jupiter.api.Test;
 
+import static TicTacToe.src.Player.*;
 import static TicTacToe.src.Square.*;
 import static org.junit.jupiter.api.Assertions.*;
 
