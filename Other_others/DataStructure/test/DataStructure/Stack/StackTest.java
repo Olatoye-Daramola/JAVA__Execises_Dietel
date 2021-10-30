@@ -1,6 +1,6 @@
-package DataStructure.test.DataStructure;
+package DataStructure.test.DataStructure.Stack;
 
-import DataStructure.src.DataStructure.Stack;
+import DataStructure.src.DataStructure.Stack.Stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
