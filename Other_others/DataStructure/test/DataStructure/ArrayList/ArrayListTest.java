@@ -1,9 +1,9 @@
-package DataStructure;
+package DataStructure.test.DataStructure.ArrayList;
 
+import DataStructure.src.DataStructure.ArrayList.ArrayList;
+import DataStructure.src.DataStructure.ArrayList.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
