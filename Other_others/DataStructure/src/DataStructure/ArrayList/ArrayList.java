@@ -1,4 +1,4 @@
-package DataStructure;
+package DataStructure.src.DataStructure.ArrayList;
 
 public class ArrayList implements List {
 //    private boolean isEmpty = true;
