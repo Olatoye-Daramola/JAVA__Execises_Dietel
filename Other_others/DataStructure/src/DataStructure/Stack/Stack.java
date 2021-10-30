@@ -1,4 +1,4 @@
-package DataStructure.src.DataStructure;
+package DataStructure.src.DataStructure.Stack;
 
 public class Stack {
     private int numberOfElements;
