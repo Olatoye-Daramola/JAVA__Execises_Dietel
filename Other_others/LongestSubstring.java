@@ -18,9 +18,24 @@ public class LongestSubstring {
         return maxCounter;
     }
 
+//    private static int longestSubstring(String string, int startIndex) {
+//        ArrayList<Character> characters = new ArrayList<>();
+//        int counter = 0;
+//        for (int i = startIndex; i < string.length(); i++) {
+//            if(characters.contains(string.charAt(i))) {
+//                longestSubstring(string, i);
+//            }
+//            characters.add(string.charAt(i));
+//            counter++;
+//        }
+//        return counter;
+//    }
+
 
     public static void main(String[] args) {
         String string = "pwwkew";
+        int startIndex = 0, endIndex = string.length();
         System.out.println(longestSubstring(string));
+//        System.out.println(longestSubstring(string, startIndex));
     }
 }
