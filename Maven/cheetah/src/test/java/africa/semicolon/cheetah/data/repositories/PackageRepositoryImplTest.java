@@ -35,18 +35,87 @@ class PackageRepositoryImplTest {
     }
 
     @Test
+    void updatePackageTest() {
+        Package aPackage = new Package();
+        aPackage.setName("Sleeping Mat");
+        aPackage.setSenderName("Jerry");
+        aPackage.setReceiverName("Dammy");
+        aPackage.setReceiverPhone("0123456789");
+        aPackage.setDeliveryAddress("312, Herbert Macaulay Way, Sabo-Yaba, Lagos");
+        aPackage.setNetWeight(23.5);
+        aPackage.setSenderPhone(aPackage.getReceiverPhone());
+
+        Package savedPackage = packageRepository.save(aPackage);
+        savedPackage.setName("Sniper");
+        Package updatedPackage = packageRepository.save(savedPackage);
+        assertEquals(1, updatedPackage.getTrackingNumber());
+    }
+
+    @Test
     void findAll() {
+        Package aPackage = new Package();
+        aPackage.setName("Sleeping Mat");
+        aPackage.setSenderName("Jerry");
+        aPackage.setReceiverName("Dammy");
+        aPackage.setReceiverPhone("0123456789");
+        aPackage.setDeliveryAddress("312, Herbert Macaulay Way, Sabo-Yaba, Lagos");
+        aPackage.setNetWeight(23.5);
+        aPackage.setSenderPhone(aPackage.getReceiverPhone());
+
+        Package savedPackage = packageRepository.save(aPackage);
+        assertEquals(1, packageRepository.findAll().size());
     }
 
     @Test
     void delete() {
+        Package aPackage = new Package();
+        aPackage.setName("Sleeping Mat");
+        aPackage.setSenderName("Jerry");
+        aPackage.setReceiverName("Dammy");
+        aPackage.setReceiverPhone("0123456789");
+        aPackage.setDeliveryAddress("312, Herbert Macaulay Way, Sabo-Yaba, Lagos");
+        aPackage.setNetWeight(23.5);
+        aPackage.setSenderPhone(aPackage.getReceiverPhone());
+
+        Package savedPackage = packageRepository.save(aPackage);
+        assertEquals(1, packageRepository.findAll().size());
+
+        packageRepository.delete(savedPackage);
+        assertEquals(0, packageRepository.findAll().size());
     }
 
     @Test
     void deleteByTrackingNumber() {
+        Package aPackage = new Package();
+        aPackage.setName("Sleeping Mat");
+        aPackage.setSenderName("Jerry");
+        aPackage.setReceiverName("Dammy");
+        aPackage.setReceiverPhone("0123456789");
+        aPackage.setDeliveryAddress("312, Herbert Macaulay Way, Sabo-Yaba, Lagos");
+        aPackage.setNetWeight(23.5);
+        aPackage.setSenderPhone(aPackage.getReceiverPhone());
+
+        Package savedPackage = packageRepository.save(aPackage);
+        assertEquals(1, packageRepository.findAll().size());
+
+        packageRepository.delete(savedPackage);
+        assertEquals(0, packageRepository.findAll().size());
     }
 
     @Test
     void findPackageByTrackingNumber() {
+        Package aPackage = new Package();
+        aPackage.setName("Sleeping Mat");
+        aPackage.setSenderName("Jerry");
+        aPackage.setReceiverName("Dammy");
+        aPackage.setReceiverPhone("0123456789");
+        aPackage.setDeliveryAddress("312, Herbert Macaulay Way, Sabo-Yaba, Lagos");
+        aPackage.setNetWeight(23.5);
+        aPackage.setSenderPhone(aPackage.getReceiverPhone());
+
+        Package savedPackage = packageRepository.save(aPackage);
+        assertEquals(1, packageRepository.findAll().size());
+
+        assertEquals(0, packageRepository.findPackageByTrackingNumber(1));
     }
 }
