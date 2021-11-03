@@ -114,8 +114,6 @@ class PackageRepositoryImplTest {
         aPackage.setSenderPhone(aPackage.getReceiverPhone());
 
         Package savedPackage = packageRepository.save(aPackage);
-        assertEquals(1, packageRepository.findAll().size());
-
-        assertEquals(0, packageRepository.findPackageByTrackingNumber(1));
+        assertEquals(savedPackage, packageRepository.findPackageByTrackingNumber(1));
     }
 }
