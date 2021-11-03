@@ -14,14 +14,16 @@ public class PackageServiceImpl implements PackageService {
     public AddPackageResponse addPackage(AddPackageRequest addPackageRequest) {
 //        convert addPackage request to a package
         Package aPackage = ModelMapper.map(addPackageRequest);
-
 //        save package
         Package savedPackage = packageRepository.save(aPackage);
-
 //        convert saved package to addPackage response
         AddPackageResponse addPackageResponse = ModelMapper.map(savedPackage);
-
 //        return converted response
         return addPackageResponse;
+    }
+
+    @Override
+    public Package findMyPackageWithMy(Integer trackingNumber) {
+        return packageRepository.findPackageByTrackingNumber(trackingNumber);
     }
 }
