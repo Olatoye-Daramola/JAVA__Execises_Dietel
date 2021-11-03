@@ -9,12 +9,11 @@ public class BitFlipper{
 		
 		
 		if(userNumber == 0 || userNumber == 1){
-			if(userNumber == 0){
-				System.out.println("1");}
-			if(userNumber == 1){
+			if(userNumber == 0) {
+				System.out.println("1");
+			} else {
 				System.out.println("0");}
-		}
-		if(userNumber != 0 && userNumber != 1){
+		} else {
 			System.out.println("F'ing idiot, that's a wrong input");
 		}	
 	}
