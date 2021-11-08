@@ -1,5 +1,8 @@
+package africa.semicolon.cheetah.data.models;
 
-//@Data
+import lombok.Data;
+
+@Data
 public class Sender {
     private String emailAddress;
     private String senderName;
