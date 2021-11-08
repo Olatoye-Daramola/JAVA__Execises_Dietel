@@ -6,8 +6,7 @@ import lombok.Data;
 public class Package {
     private Integer trackingNumber;
     private String name;
-    private String senderName;
-    private String senderPhone;
+    private String senderEmail;
     private String receiverName;
     private String receiverPhone;
     private String deliveryAddress;
