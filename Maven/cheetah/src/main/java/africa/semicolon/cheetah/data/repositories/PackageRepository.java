@@ -10,4 +10,5 @@ public interface PackageRepository {
     void delete(Package aPackage);
     void delete(Integer trackingNumber);
     Package findPackageByTrackingNumber(Integer trackingNumber);
+    Package findPackageBySenderEmail(String emailAddress);
 }
