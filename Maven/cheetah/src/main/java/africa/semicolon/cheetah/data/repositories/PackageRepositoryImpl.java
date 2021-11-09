@@ -1,11 +1,15 @@
 package africa.semicolon.cheetah.data.repositories;
 
 import africa.semicolon.cheetah.data.models.Package;
+import africa.semicolon.cheetah.data.models.Sender;
+import africa.semicolon.cheetah.services.SenderService;
+import africa.semicolon.cheetah.services.SenderServiceImpl;
 
 import java.util.*;
 
 public class PackageRepositoryImpl implements PackageRepository {
     private final Map<Integer, Package> database = new HashMap<>();
+    private final SenderService senderService = new SenderServiceImpl();
 
     @Override
     public Package save(Package aPackage) {
@@ -42,5 +46,16 @@ public class PackageRepositoryImpl implements PackageRepository {
     @Override
     public Package findPackageByTrackingNumber(Integer trackingNumber) {
         return database.get(trackingNumber);
+    }
+
+    @Override
+    public Package findPackageBySenderEmail(String emailAddress) {
+        Optional<Sender> sender = senderService.findSenderByEmail(emailAddress);
+        Set<Integer> keys = database.keySet();
+        for(Integer key : keys) {
+            if(database.get(key).getSenderEmail().equals(sender.get().getEmailAddress()))
+                return database.get(key);
+        }
+        return null;
     }
 }
