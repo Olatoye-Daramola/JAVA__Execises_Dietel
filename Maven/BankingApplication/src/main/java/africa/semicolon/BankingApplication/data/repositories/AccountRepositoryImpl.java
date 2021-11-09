@@ -1,6 +1,6 @@
 package africa.semicolon.BankingApplication.data.repositories;
 
-import africa.semicolon.BankingApplication.data.models.Account;
+import africa.semicolon.BankingApplication.data.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
