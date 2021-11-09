@@ -1,6 +1,11 @@
 package africa.semicolon.cheetah.data.repositories;
 
 import africa.semicolon.cheetah.data.models.Package;
+import africa.semicolon.cheetah.data.models.Sender;
+import africa.semicolon.cheetah.dtos.requests.RegisterSenderRequest;
+import africa.semicolon.cheetah.dtos.responses.RegisterSenderResponse;
+import africa.semicolon.cheetah.services.SenderService;
+import africa.semicolon.cheetah.services.SenderServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -79,5 +84,19 @@ class PackageRepositoryImplTest {
         Package savedPackage = saveNewPackage();
 
         assertEquals(savedPackage, packageRepository.findPackageByTrackingNumber(1));
+    }
+
+    @Test
+    void findPackageBySenderEmailAddress() {
+        Package savedPackage = saveNewPackage();
+        SenderService senderService = new SenderServiceImpl();
+        Sender sender = new Sender();
+
+        RegisterSenderRequest registerSenderRequest = new RegisterSenderRequest();
+        registerSenderRequest.setSenderEmail(savedPackage.getSenderEmail());
+
+        senderService.registerSenderResponse(registerSenderRequest);
+
+//        assertEquals(savedPackage.getSenderEmail(), senderService.findSenderByEmail();
     }
 }
