@@ -1,6 +1,7 @@
 package africa.semicolon.cheetah.data.repositories;
 
 import africa.semicolon.cheetah.data.models.Sender;
+import africa.semicolon.cheetah.exceptions.UserNotFoundException;
 
 import java.util.*;
 
@@ -15,8 +16,8 @@ public class SenderRepositoryImpl implements SenderRepository {
 
     @Override
     public Optional<Sender> findSenderByEmail(String senderEmail) {
-        if(database.containsKey(senderEmail)) return Optional.of(database.get(senderEmail));
-        return Optional.empty();
+        if(!(database.containsKey(senderEmail))) throw new UserNotFoundException("User does not exist");
+        return Optional.of(database.get(senderEmail));
     }
 
     @Override
