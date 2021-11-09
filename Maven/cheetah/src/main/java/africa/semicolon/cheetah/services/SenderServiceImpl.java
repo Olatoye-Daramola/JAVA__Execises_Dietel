@@ -6,6 +6,7 @@ import africa.semicolon.cheetah.data.repositories.SenderRepositoryImpl;
 import africa.semicolon.cheetah.dtos.requests.RegisterSenderRequest;
 import africa.semicolon.cheetah.dtos.responses.RegisterSenderResponse;
 import africa.semicolon.cheetah.exceptions.DuplicateUserException;
+import africa.semicolon.cheetah.exceptions.UserNotFoundException;
 import africa.semicolon.cheetah.utils.ModelMapper;
 
 import java.util.List;
@@ -29,8 +30,9 @@ public class SenderServiceImpl implements SenderService {
     }
 
     @Override
-    public Sender findSenderByEmail(String email) {
-        return senderRepository.findSenderByEmail(email).get();
+    public Optional<Sender> findSenderByEmail(String email) {
+        if (!senderRepository.findSenderByEmail(email).isPresent()) throw new UserNotFoundException("Sender not found");
+        return senderRepository.findSenderByEmail(email);
     }
 
     @Override
