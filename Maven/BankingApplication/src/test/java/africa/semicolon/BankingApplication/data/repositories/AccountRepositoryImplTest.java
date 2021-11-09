@@ -1,8 +1,6 @@
 package africa.semicolon.BankingApplication.data.repositories;
 
-import africa.semicolon.BankingApplication.data.models.Account;
 import africa.semicolon.BankingApplication.data.models.*;
-import africa.semicolon.BankingApplication.data.models.Customer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
