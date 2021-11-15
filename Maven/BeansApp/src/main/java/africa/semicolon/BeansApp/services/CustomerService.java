@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface CustomerService {
     RegisterCustomerResponse registerCustomer(RegisterCustomerRequest customerRequest);
-    Optional<Customer> findCustomer(Customer customer);
-    Optional<Customer> findCustomerByEmail(String email);
+    Optional<Customer> getCustomer(Customer customer);
+    Optional<Customer> getCustomerByEmail(String email);
     List<Customer> findAllCustomers();
     void updateCustomerPassword(Customer customer, String newPassword);
     void deleteCustomer(Customer customer);
