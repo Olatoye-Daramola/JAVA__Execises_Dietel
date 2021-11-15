@@ -7,8 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerServiceImplTest {
@@ -35,27 +33,27 @@ class CustomerServiceImplTest {
     @Test
     void registerCustomer() {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
-        Customer foundCustomer = customerService.findCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
+        Customer foundCustomer = customerService.getCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
 
         assertEquals(registerCustomerResponse.getCustomerEmail(),
                 customerService.findAllCustomers().get(0).getEmail()
                 );
         assertEquals(1, customerService.findAllCustomers().size());
         assertEquals(foundCustomer,
-                customerService.findCustomer(customerService.findAllCustomers().get(0)).get()
+                customerService.getCustomer(customerService.findAllCustomers().get(0)).get()
         );
     }
 
     @Test
     void findCustomer() {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
-        Customer foundCustomer = customerService.findCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
+        Customer foundCustomer = customerService.getCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
 
         assertEquals(registerCustomerResponse.getCustomerEmail(),
-                customerService.findCustomer(customerService.findAllCustomers().get(0)).get().getEmail()
+                customerService.getCustomer(customerService.findAllCustomers().get(0)).get().getEmail()
         );
         assertEquals(foundCustomer,
-                customerService.findCustomer(customerService.findAllCustomers().get(0)).get()
+                customerService.getCustomer(customerService.findAllCustomers().get(0)).get()
         );
     }
 
@@ -63,7 +61,7 @@ class CustomerServiceImplTest {
     void findCustomerByEmail() {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
         assertEquals(registerCustomerResponse.getCustomerEmail(),
-                customerService.findCustomerByEmail(customerService.findAllCustomers().get(0).getEmail()).get().getEmail()
+                customerService.getCustomerByEmail(customerService.findAllCustomers().get(0).getEmail()).get().getEmail()
         );
     }
 
@@ -76,7 +74,7 @@ class CustomerServiceImplTest {
     @Test
     void updateCustomerPassword() {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
-        Customer foundCustomer = customerService.findCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
+        Customer foundCustomer = customerService.getCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
         assertEquals("semicolon001", foundCustomer.getPassword());
 
         customerService.updateCustomerPassword(foundCustomer, "1234567890");
@@ -88,7 +86,7 @@ class CustomerServiceImplTest {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
         assertEquals(1, customerService.findAllCustomers().size());
 
-        Customer foundCustomer = customerService.findCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
+        Customer foundCustomer = customerService.getCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
         customerService.deleteCustomer(foundCustomer);
         assertEquals(0, customerService.findAllCustomers().size());
     }
