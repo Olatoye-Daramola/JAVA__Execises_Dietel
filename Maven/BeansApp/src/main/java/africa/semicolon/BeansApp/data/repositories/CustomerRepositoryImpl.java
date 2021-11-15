@@ -1,8 +1,8 @@
 package africa.semicolon.BeansApp.data.repositories;
 
 import africa.semicolon.BeansApp.data.models.Customer;
-import africa.semicolon.BeansApp.exceptions.CustomerAlreadyExistsException;
 import africa.semicolon.BeansApp.exceptions.CustomerNotFoundException;
+import africa.semicolon.BeansApp.exceptions.DuplicateCustomerException;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        if (database.containsKey(customer.getEmail())) throw new CustomerAlreadyExistsException("Sorry, customer already exists");
+        if (database.containsKey(customer.getEmail())) throw new DuplicateCustomerException("Sorry, customer already exists");
         database.put(customer.getEmail(), customer);
         return database.get(customer.getEmail());
     }
