@@ -4,7 +4,6 @@ import africa.semicolon.cheetah.data.models.Sender;
 import africa.semicolon.cheetah.dtos.requests.RegisterSenderRequest;
 import africa.semicolon.cheetah.dtos.responses.RegisterSenderResponse;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
