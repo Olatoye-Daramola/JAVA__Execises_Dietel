@@ -17,28 +17,27 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public RegisterCustomerResponse registerCustomer(RegisterCustomerRequest customerRequest) {
-//        RegisterCustomerResponse response = new RegisterCustomerResponse();
-//        try {
-            Optional<Customer> customerInDatabase = customerRepository.findCustomerByEmail(customerRequest.getCustomerEmail());
+        Customer customer = ModelMapper.map(customerRequest);
+        RegisterCustomerResponse response = new RegisterCustomerResponse();
+        try {
+            Optional<Customer> customerInDatabase = customerRepository.findCustomer(customer);
             if (customerInDatabase.isPresent())
                 throw new DuplicateCustomerException(customerRequest.getCustomerEmail() + " already exists");
-//        }
-//        catch (CustomerNotFoundException error) {
-            Customer customer = ModelMapper.map(customerRequest);
+        }
+        catch (CustomerNotFoundException error) {
             Customer savedCustomer = customerRepository.saveCustomer(customer);
-//            response = ModelMapper.map(savedCustomer);
-//        }
-//        return response;
-        return ModelMapper.map(savedCustomer);
+            response = ModelMapper.map(savedCustomer);
+        }
+        return response;
     }
 
     @Override
-    public Optional<Customer> findCustomer(Customer customer) {
+    public Optional<Customer> getCustomer(Customer customer) {
         return customerRepository.findCustomer(customer);
     }
 
     @Override
-    public Optional<Customer> findCustomerByEmail(String email) {
+    public Optional<Customer> getCustomerByEmail(String email) {
         return customerRepository.findCustomerByEmail(email);
     }
 
