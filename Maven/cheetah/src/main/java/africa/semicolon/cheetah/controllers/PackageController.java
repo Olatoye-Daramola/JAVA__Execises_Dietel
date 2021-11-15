@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class PackageController {
     private final PackageService packageService = new PackageServiceImpl();
 
-    @PostMapping("/api/addpackage")
+    @PostMapping("/api/addPackage")
     public ResponseEntity<?> addPackage(@RequestBody AddPackageRequest addPackageRequest) {
         try {
             AddPackageResponse response = packageService.addPackage(addPackageRequest);
