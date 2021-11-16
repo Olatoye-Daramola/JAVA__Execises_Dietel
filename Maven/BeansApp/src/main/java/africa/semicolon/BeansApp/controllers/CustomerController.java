@@ -21,7 +21,7 @@ public class CustomerController {
     public ResponseEntity<?> addCustomer(@RequestBody RegisterCustomerRequest registerCustomerRequest) {
         try {
             RegisterCustomerResponse response = customerService.registerCustomer(registerCustomerRequest);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
             }
         catch (DuplicateCustomerException error ) {
             return new ResponseEntity<>(error.getMessage(), HttpStatus.BAD_REQUEST);
@@ -32,7 +32,7 @@ public class CustomerController {
     public ResponseEntity<?> getCustomerByEmail(@PathVariable("email") String email) {
         try {
             Optional<Customer> response = customerService.getCustomerByEmail(email);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.FOUND);
         }
         catch(CustomerNotFoundException error) {
             return new ResponseEntity<>(error.getMessage(), HttpStatus.BAD_REQUEST);
