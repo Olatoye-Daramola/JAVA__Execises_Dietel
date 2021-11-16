@@ -35,13 +35,9 @@ class CustomerServiceImplTest {
         RegisterCustomerResponse registerCustomerResponse = saveCustomerResponseHelper();
         Customer foundCustomer = customerService.getCustomerByEmail(registerCustomerResponse.getCustomerEmail()).get();
 
-        assertEquals(registerCustomerResponse.getCustomerEmail(),
-                customerService.findAllCustomers().get(0).getEmail()
-                );
+        assertEquals(registerCustomerResponse.getCustomerEmail(), customerService.findAllCustomers().get(0).getEmail());
         assertEquals(1, customerService.findAllCustomers().size());
-        assertEquals(foundCustomer,
-                customerService.getCustomer(customerService.findAllCustomers().get(0)).get()
-        );
+        assertEquals(foundCustomer, customerService.getCustomer(customerService.findAllCustomers().get(0)).get());
     }
 
     @Test

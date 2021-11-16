@@ -16,6 +16,7 @@ public class ModelMapper {
     public static RegisterCustomerResponse map(Customer customer) {
         RegisterCustomerResponse response = new RegisterCustomerResponse();
         response.setCustomerEmail(customer.getEmail());
+        response.setCustomerPassword(customer.getPassword());
         return response;
     }
 }
