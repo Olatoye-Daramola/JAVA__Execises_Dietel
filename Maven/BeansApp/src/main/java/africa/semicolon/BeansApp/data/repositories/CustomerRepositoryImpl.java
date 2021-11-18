@@ -18,12 +18,14 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
     @Override
     public void changeCustomerPassword(Customer customer, String password) {
+        assert(findCustomer(customer).isPresent());
         Customer foundCustomer = findCustomer(customer).get();
         foundCustomer.setPassword(password);
     }
 
     @Override
     public Optional<Customer> findCustomer(Customer customer) {
+        assert(findCustomerByEmail(customer.getEmail()).isPresent());
         return Optional.of(findCustomerByEmail(customer.getEmail()).get());
     }
 
