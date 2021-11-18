@@ -31,7 +31,7 @@ class CustomerRepositoryImplTest {
 
     @Test
     void saveCustomer() {
-        Customer savedCustomer = saveCustomerHelperMethod();
+        saveCustomerHelperMethod();
         assertEquals(1, customerRepository.findAllCustomers().size());
         assertEquals("mrchibuzo@semicolon.africa",
                 customerRepository.findAllCustomers().get(0).getEmail()
@@ -43,6 +43,7 @@ class CustomerRepositoryImplTest {
         Customer savedCustomer = saveCustomerHelperMethod();
         String newPassword = "0123456789";
         customerRepository.changeCustomerPassword(savedCustomer, newPassword);
+        assert(customerRepository.findCustomer(savedCustomer).isPresent());
         assertEquals(newPassword, customerRepository.findCustomer(savedCustomer).get().getPassword());
     }
 
@@ -68,13 +69,13 @@ class CustomerRepositoryImplTest {
         firstCustomer.setEmail("mrchibuzo@semicolon.africa");
         firstCustomer.setFullName("Uncle Chibob");
         firstCustomer.setPassword("semicolon01");
-        Customer savedFirstCustomer = customerRepository.saveCustomer(firstCustomer);
+        customerRepository.saveCustomer(firstCustomer);
 
         Customer secondCustomer = new Customer();
         secondCustomer.setEmail("mrgabriel@semicolon.africa");
         secondCustomer.setFullName("Enum Master");
         secondCustomer.setPassword("semicolon02");
-        Customer savedSecondCustomer = customerRepository.saveCustomer(secondCustomer);
+        customerRepository.saveCustomer(secondCustomer);
 
         assertEquals(2, customerRepository.findAllCustomers().size());
         assertEquals("mrchibuzo@semicolon.africa",
@@ -107,13 +108,13 @@ class CustomerRepositoryImplTest {
         firstCustomer.setEmail("mrchibuzo@semicolon.africa");
         firstCustomer.setFullName("Uncle Chibob");
         firstCustomer.setPassword("semicolon01");
-        Customer savedFirstCustomer = customerRepository.saveCustomer(firstCustomer);
+        customerRepository.saveCustomer(firstCustomer);
 
         Customer secondCustomer = new Customer();
         secondCustomer.setEmail("mrgabriel@semicolon.africa");
         secondCustomer.setFullName("Enum Master");
         secondCustomer.setPassword("semicolon02");
-        Customer savedSecondCustomer = customerRepository.saveCustomer(secondCustomer);
+        customerRepository.saveCustomer(secondCustomer);
 
         customerRepository.deleteAllCustomers();
         assertEquals(0, customerRepository.findAllCustomers().size());
