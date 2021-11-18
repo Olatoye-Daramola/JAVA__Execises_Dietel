@@ -1,4 +1,4 @@
 package Algorithms.Sort;
 
-public class QuickSort {
+public class ShellSort {
 }
