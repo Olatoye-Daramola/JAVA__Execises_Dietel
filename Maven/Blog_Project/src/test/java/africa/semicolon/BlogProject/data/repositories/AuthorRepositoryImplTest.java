@@ -21,10 +21,7 @@ class AuthorRepositoryImplTest {
 
     @Test
     void saveNewAuthor() {
-        Author author = new Author();
-        author.setUserName("olatoye");
-        author.setUserEmail("toye@email.com");
-        author.setAuthorName("Olatoye David");
+        Author author = createAuthorHelper();
 
         Author savedAuthor = authorRepository.save(author);
         assertEquals(savedAuthor, author);
@@ -32,18 +29,13 @@ class AuthorRepositoryImplTest {
     }
 
     public Author createAuthorHelper() {
-        Author author = new Author();
-        author.setUserName("olatoye");
-        author.setUserEmail("toye@email.com");
-        author.setAuthorName("Olatoye David");
-
-        return author;
+        return new Author("olatoye", "toye@email.com", "Olatoye David");
     }
 
     @Test
-    void findAuthorByUserName() {
+    void findAuthorByUserEmail() {
         Author author = authorRepository.save(createAuthorHelper());
-        assertEquals(author.getUserName(), authorRepository.findAuthorByUserName(author.getUserName()).getUserName());
+        assertEquals(author.getUserEmail(), authorRepository.findAuthorByUserEmail(author.getUserEmail()).getUserEmail());
     }
 
     @Test
@@ -58,16 +50,10 @@ class AuthorRepositoryImplTest {
 
     @Test
     void findAllAuthors() {
-        Author firstAuthor = new Author();
-        firstAuthor.setUserName("olatoye");
-        firstAuthor.setUserEmail("toye@email.com");
-        firstAuthor.setAuthorName("Olatoye David");
+        Author firstAuthor = new Author("olatoye", "toye@email.com", "Olatoye David");
         authorRepository.save(firstAuthor);
 
-        Author secondAuthor = new Author();
-        secondAuthor.setUserName("david");
-        secondAuthor.setUserEmail("toye_david@email.com");
-        secondAuthor.setAuthorName("David Olatoye");
+        Author secondAuthor = new Author("david", "toye_david@email.com", "David Olatoye");
         authorRepository.save(secondAuthor);
 
         assertEquals(2, authorRepository.findAllAuthors().size());
@@ -78,23 +64,17 @@ class AuthorRepositoryImplTest {
         Author author = authorRepository.save(createAuthorHelper());
         assertEquals(1, authorRepository.findAllAuthors().size());
 
-        authorRepository.deleteAuthorByUserName(author.getUserName());
+        authorRepository.deleteAuthorByUserEmail(author.getUserEmail());
         assertEquals(0, authorRepository.findAllAuthors().size());
 
     }
 
     @Test
     void deleteAuthor() {
-        Author firstAuthor = new Author();
-        firstAuthor.setUserName("olatoye");
-        firstAuthor.setUserEmail("toye@email.com");
-        firstAuthor.setAuthorName("Olatoye David");
+        Author firstAuthor = new Author("olatoye", "toye@email.com", "Olatoye David");
         authorRepository.save(firstAuthor);
 
-        Author secondAuthor = new Author();
-        secondAuthor.setUserName("david");
-        secondAuthor.setUserEmail("toye_david@email.com");
-        secondAuthor.setAuthorName("David Olatoye");
+        Author secondAuthor = new Author("david", "toye_david@email.com", "David Olatoye");
         authorRepository.save(secondAuthor);
 
         assertEquals(2, authorRepository.findAllAuthors().size());
