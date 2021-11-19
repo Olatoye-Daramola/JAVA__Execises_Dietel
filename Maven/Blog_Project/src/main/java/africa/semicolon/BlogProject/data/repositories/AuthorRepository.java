@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface AuthorRepository {
     Author save(Author author);
-    Author findAuthorByUserName(String userName);
+    Author findAuthorByUserEmail(String userEmail);
     Author findAuthor(Author author);
 //    TODO:
     Author findAuthorByPostHeadline(String postHeadline);
     List<Author> findAllAuthors();
-    void deleteAuthorByUserName(String userName);
+    void deleteAuthorByUserEmail(String userEmail);
     void deleteAuthor(Author author);
     void deleteAll();
 }
