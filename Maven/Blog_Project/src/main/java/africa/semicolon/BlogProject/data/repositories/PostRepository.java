@@ -7,13 +7,14 @@ import africa.semicolon.BlogProject.data.models.Post;
 import java.util.List;
 
 public interface PostRepository {
-    Post save(Post post);
-    Post updatePost(Post post);
+    Post savePost(Post post);
+    void updatePost(Post post, String headline, String body);
+    Post findPostByPostId(Integer id);
     Post findPostByHeadline(String headline);
-    Post findPostByAuthor(Author author);
+    List<Post> findPostsByAuthor(Author author);
     //    TODO:
     List<Post> findAllPosts();
-    void deletePostByAuthorUserName(String userName);
+    void deletePostsByAuthorEmail(String userEmail);
     void deletePost(Post post);
     void deleteAll();
 }
