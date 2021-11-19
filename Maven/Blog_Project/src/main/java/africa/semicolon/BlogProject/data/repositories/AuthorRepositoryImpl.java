@@ -9,18 +9,18 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
     @Override
     public Author save(Author author) {
-        database.put(author.getUserName(), author);
-        return database.get(author.getUserName());
+        database.put(author.getUserEmail(), author);
+        return database.get(author.getUserEmail());
     }
 
     @Override
-    public Author findAuthorByUserName(String userName) {
-        return database.get(userName);
+    public Author findAuthorByUserEmail(String userEmail) {
+        return database.get(userEmail);
     }
 
     @Override
     public Author findAuthor(Author author) {
-        return findAuthorByUserName(author.getUserName());
+        return findAuthorByUserEmail(author.getUserEmail());
     }
 
     @Override
@@ -39,13 +39,13 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     }
 
     @Override
-    public void deleteAuthorByUserName(String userName) {
-        database.remove(userName);
+    public void deleteAuthorByUserEmail(String userEmail) {
+        database.remove(userEmail);
     }
 
     @Override
     public void deleteAuthor(Author author) {
-        deleteAuthorByUserName(author.getUserName());
+        deleteAuthorByUserEmail(author.getUserEmail());
     }
 
     @Override
