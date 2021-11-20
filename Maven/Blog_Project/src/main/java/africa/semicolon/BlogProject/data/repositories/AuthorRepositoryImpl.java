@@ -43,6 +43,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         database.remove(userEmail);
     }
 
+
     @Override
     public void deleteAuthor(Author author) {
         deleteAuthorByUserEmail(author.getUserEmail());
