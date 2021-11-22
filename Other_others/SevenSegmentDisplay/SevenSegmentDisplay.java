@@ -1,6 +1,5 @@
 package SevenSegmentDisplay;
 
-import Turtle_graphics.src.Position;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
