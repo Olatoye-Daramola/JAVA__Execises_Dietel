@@ -1,8 +1,10 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ProcessingEmployees {
     public static void main(String[] args) {
@@ -54,5 +56,61 @@ public class ProcessingEmployees {
         list.stream()
                 .sorted( lastThenFirst.reversed() )
                 .forEach(System.out::println);
+
+        System.out.printf("%nUnique employee last names:%n");
+        list.stream()
+                .map(Employee::getLastName)
+                .distinct()
+                .sorted()
+                .forEach(System.out::println);
+// display only first and last names
+        System.out.printf(
+                "%nEmployee names in order by last name then first name:%n");
+        list.stream()
+                .sorted(lastThenFirst)
+                .map(Employee::getName)
+                .forEach(System.out::println);
+
+        System.out.printf("%nEmployees by department:%n");
+        Map<String, List<Employee>> groupedByDepartment =
+                list.stream()
+                        .collect(Collectors.groupingBy(Employee::getDepartment));
+        groupedByDepartment.forEach(
+                (department, employeesInDepartment) -> {
+                    System.out.printf("%n%s%n", department);
+                    employeesInDepartment.forEach(
+                            employee -> System.out.printf("%s%n", employee));
+                }
+        );
+
+
+
+        System.out.printf("%nCount of Employees by department:%n");
+        Map<String, Long> employeeCountByDepartment =
+                list.stream()
+                        .collect(Collectors.groupingBy(Employee::getDepartment,
+                                Collectors.counting()));
+        employeeCountByDepartment.forEach(
+                (department, count) -> System.out.printf(
+                        "%s has %d employee(s)%n", department, count));
+
+
+        System.out.printf(
+                "%nSum of Employees' salaries (via sum method): %.2f%n",
+                list.stream()
+                        .mapToDouble(Employee::getSalary)
+                        .sum());
+// calculate sum of Employee salaries with Stream reduce method
+        System.out.printf(
+                "Sum of Employees' salaries (via reduce method): %.2f%n",
+                list.stream()
+                        .mapToDouble(Employee::getSalary)
+                        .reduce(0, (value1, value2) -> value1 + value2) );
+// average of Employee salaries with DoubleStream average method
+        System.out.printf("Average of Employees' salaries: %.2f%n",
+                list.stream()
+                        .mapToDouble(Employee::getSalary)
+                        .average()
+                        .getAsDouble());
     }
 }
